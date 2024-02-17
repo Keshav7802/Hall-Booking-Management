@@ -13,5 +13,5 @@ const eventSchema = new Schema({
   ticketID: Number,
 });
 
-const eventModel = mongoose.model('Event', eventSchema);
+const EventModel = mongoose.model('EventModel', eventSchema);
 export default EventModel;
