@@ -34,14 +34,11 @@ function LoginPage() {
               <input type="password" placeholder="Confirm Password" />
             </div>
             
-            <CaptchaImage />
-
-           
-
+            {/* <CaptchaImage />
             <div className="input-container">
             <i className="fas fa-refresh"></i>
               <input type="text" placeholder="Enter the above code" />
-            </div>
+            </div> */}
 
             <button>Register</button>
           </form>
@@ -63,9 +60,6 @@ function LoginPage() {
               <span htmlFor="captcha"> </span>
             </div>
             <CaptchaImage />
-
-           
-
             <div className="input-container">
             <i className="fas fa-refresh"></i>
               <input type="text" placeholder="Enter the above code" />

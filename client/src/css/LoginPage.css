@@ -262,38 +262,29 @@ body{
 }
 
 .toggle-left ul li a {
-    color: #3f58c4; /* Set your preferred color value */
-    text-decoration: none; /* Remove the underline */
+    color: #3f58c4; 
+    text-decoration: none;
   }
 
   .toggle-left ul li a:hover {
-    color: #3f58c4; /* Set your preferred color value */
-    text-decoration: none; /* Remove the underline */
-  }
+    color: #3f58c4; 
+    text-decoration: none; }
 
   .toggle-right ul li a {
-    color: #3f58c4; /* Set your preferred color value */
-    text-decoration: none; /* Remove the underline */
+    color: #3f58c4; 
+    text-decoration: none;
   }
 
   .toggle-left ul li a:hover {
-    color: #3f58c4; /* Set your preferred color value */
-    text-decoration: none; /* Remove the underline */
+    color: #3f58c4; 
+    text-decoration: none;
   }
 
   .captcha-image img {
-    width: 100%; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
-    margin-top: 10px; /* Adjust the margin as needed */
-    border: 1px solid #ddd; /* Add a border for better visibility */
-    border-radius: 5px; /* Add border radius for rounded corners */
+    width: 100%;
+    height: auto; 
+    margin-top: 10px; 
+    border: 1px solid #ddd; 
   }
   
 
-
-/* .toggle-panel .toggle-right{ */
-    /* font-family: 'Your-Preferred-Font', sans-serif; */
-    /* font-size: 60px; Adjust the font size as needed */
-    /* font-weight: bolder; Adjust the font weight as needed */
-    /* line-height: 1.5; Adjust the line height as needed */
-  /* } */
