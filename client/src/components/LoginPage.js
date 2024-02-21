@@ -3,19 +3,58 @@ import CaptchaImage from "./CaptchaImage";
 import "../css/LoginPage.css";
 function LoginPage() {
   const [contain, setcontainer] = useState(false);
+  const [loginError, setLoginError] = useState(false);
+  const [signupError, setSignupError] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+
   const HandleRegister = () => {
+    if (password !== confirmPassword) {
+      // Passwords don't match, display an error message or take appropriate action
+      console.log("Passwords do not match");
+      setSignupError(true);
+      return;
+    }
+  
+    // Continue with registration logic
     setcontainer(true);
   };
+  
 
-  const HandleLogin = () => {
-    setcontainer(false);
+    const HandleLogin = async () => {
+    try {
+      // Replace the following with actual API endpoint and authentication logic
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        setLoginError(false);
+        setcontainer(false);
+        // Add logic to navigate to the authenticated section or perform other actions
+      } else {
+        setLoginError(true);
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      setLoginError(true);
+    }
   };
+
   return (
     <>
       <div className={`container ${contain ? "active" : ""}`} id="container">
         <div className="form-container sign-up">
           <form>
             <h1>Registration</h1>
+
 
             <div className="input-container">
               <i className="fas fa-user"></i>
@@ -33,7 +72,8 @@ function LoginPage() {
               <i className="fas fa-lock"></i>
               <input type="password" placeholder="Confirm Password" />
             </div>
-            
+            {signupError && <p className="error-message">Passwords do not match</p>}
+
             {/* <CaptchaImage />
             <div className="input-container">
             <i className="fas fa-refresh"></i>
@@ -46,6 +86,7 @@ function LoginPage() {
         <div className="form-container sign-in">
           <form>
             <h1>Login</h1>
+            {loginError && <p className="error-message">Incorrect email or password</p>}
 
             <div className="input-container">
               <i className="fas fa-envelope"></i>
