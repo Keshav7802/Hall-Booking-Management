@@ -4,12 +4,15 @@ import mongoose from "mongoose";
 import cors from 'cors';
 import dotenv from 'dotenv';
 
+import userRoutes from './routes/users.js';
+
 const app = express();
 dotenv.config();
 
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(cors());
+app.use('/user', userRoutes); 
 
 app.get('/',(req,res)=>{
     res.send('Hello To Hall Booking API');
