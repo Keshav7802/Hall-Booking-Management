@@ -13,7 +13,7 @@ function LoginPage() {
   };
   return (
     <>
-      <div className={`container ${contain ? "active" : ""}`} id="container">
+      <div className={`container ${contain ? "active" : ""}`} id="container" style={{marginBottom : "4rem", marginTop : "4rem"}}>
         <div className="form-container sign-up">
           <form>
             <h1>Registration</h1>
