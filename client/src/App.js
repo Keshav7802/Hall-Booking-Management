@@ -16,6 +16,7 @@ function App() {
       <div className="vh-100">
         <Header />
         <Routes>
+          <Route path="" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/LandingPage" element={<LandingPage />} />
