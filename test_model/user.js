@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
 const userSchema = mongoose.Schema({
-    name: String,
-    email: String,
+    name: Number,
+    username: String,
     password: String, //This would be hashed
     userType: { type: String, enum: ['Student', 'Faculty', 'Administration', 'IT Staff'] },
 });

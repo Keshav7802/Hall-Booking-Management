@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+const {Schema} = mongoose;
 
 const hallSchema = mongoose.Schema({
   hallID: Number,
