@@ -112,6 +112,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SideNavigation from './SideNavigation';
 import '../css/LoginPage.css';
+import Audi from '../assets/audi.jpg'
+import cs_lab from '../assets/cs_lab.jpg'
+import ee_sh from '../assets/ee_sh.jpg'
 
 const textShadow = {
   textShadow: '5px 5px 10px rgba(80, 80, 80, 0.75)',
@@ -150,9 +153,9 @@ const HallBooking = () => {
 
   // List of available halls (replace with your actual data)
   const availableHalls = [
-    { id: 1, name: 'Auditorium', department: 'Major', picture: '/Users/sanjayjain/Desktop/SoftyProject/Hall-Booking-Management/client/src/assets/audi.jpg' },
-    { id: 2, name: 'CS-Lab', department: 'Computer Science', picture: '/Users/sanjayjain/Desktop/SoftyProject/Hall-Booking-Management/client/src/assets/cs_lab.jpg' },
-    { id: 3, name: 'EE-SH', department: 'Electrical Engineering', picture: '/Users/sanjayjain/Desktop/SoftyProject/Hall-Booking-Management/client/src/assets/ee_sh.jpg' },
+    { id: 1, name: 'Auditorium', department: 'Major', picture: Audi },
+    { id: 2, name: 'CS-Lab', department: 'Computer Science', picture:cs_lab },
+    { id: 3, name: 'EE-SH', department: 'Electrical Engineering', picture: ee_sh },
     { id: 4, name: 'Hall 4', department: 'Mechanical Engineering', picture: 'hall4.jpg' },
     { id: 5, name: 'Hall 5', department: 'Civil Engineering', picture: 'hall5.jpg' },
   ];
@@ -206,16 +209,60 @@ const HallBooking = () => {
         <div>
           <h3>Available Halls:</h3>
           {filteredHalls.map((hall) => (
-            <div key={hall.id} style={{ border: '1px solid #ccc', padding: '10px', margin: '10px' }}>
-              <img src={"./assets/audi.jpg"} alt={hall.name} style={{ maxWidth: '100%' }} />
-              <h4>{hall.name}</h4>
-              <Link to={`/hall-details/${hall.id}`}>
-                <button>View Hall Details</button>
-              </Link>
-              <Link to={`/book-hall/${hall.id}`}>
-                <button>Book Hall</button>
-              </Link>
-            </div>
+        //    <div
+        //    key={hall.id}
+        //    style={{
+        //      border: '1px solid #ccc',
+        //      padding: '10px',
+        //      margin: '10px',
+        //      width: '45%', // Adjust the width to control the shape of the container
+        //      boxSizing: 'border-box', // Include padding and border in the element's total width and height
+        //      display: 'flex', // Use flexbox
+        //      flexDirection: 'column', // Stack items vertically
+        //      alignItems: 'center', // Center items horizontally
+        //      justifyContent: 'center', // Center items vertically
+        //      textAlign: 'center', // Center text
+        //    }}
+        //  >
+        //    <img src={hall.picture} alt={hall.name} style={{ maxWidth: '100%', marginBottom: '10px' }} />
+        //    <h4>{hall.name}</h4>
+        //    <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
+        //      <Link to={`/hall-details/${hall.id}`}>
+        //        <button>View Hall Details</button>
+        //      </Link>
+        //      <Link to={`/book-hall/${hall.id}`}>
+        //        <button>Book Hall</button>
+        //      </Link>
+        //    </div>
+        //  </div>
+
+        <div
+        key={hall.id}
+        style={{
+          border: '1px solid #ccc',
+          padding: '10px',
+          margin: '10px',
+          width: '45%', // Adjust the width to control the shape of the container
+          boxSizing: 'border-box', // Include padding and border in the element's total width and height
+          display: 'flex', // Use flexbox
+          flexDirection: 'column', // Stack items vertically
+          alignItems: 'center', // Center items horizontally
+          justifyContent: 'center', // Center items vertically
+          textAlign: 'center', // Center text
+        }}
+      >
+        <img src={hall.picture} alt={hall.name} style={{ maxWidth: '100%', marginBottom: '10px' }} />
+        <h4>{hall.name}</h4>
+        <div style={{ display: 'flex', justifyContent: 'center', width: '150%' }}>
+          <Link to={`/hall-details/${hall.id}`}>
+            <button style={{ margin: '6px' }}>View Hall Details</button>
+          </Link>
+          <Link to={`/book-hall/${hall.id}`}>
+            <button style={{ margin: '6px' }}>Book Hall</button>
+          </Link>
+        </div>
+      </div>
+         
           ))}
         </div>
       </div>
