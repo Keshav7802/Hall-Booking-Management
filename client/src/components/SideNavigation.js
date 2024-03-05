@@ -1,10 +1,16 @@
 import React from "react";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { Link } from "react-router-dom";
+import profileIcon from "../assets/profile.jpg";
 
 const SideNavigation = ({}) => {
   return (
-    <Sidebar style={{ height: "inherit" }}>
+    <Sidebar style={{ height: "505px" }}>
+
+<div style={{ padding: '15px', borderBottom: '1px solid #eee', display: 'flex', alignItems: 'center' }}>
+        <img src= {profileIcon} alt="Profile Icon" style={{ width: '30px', height: '30px', borderRadius: '50%', marginRight: '10px' }} />
+        <span style={{ fontWeight: 'bold' }}>Suyash Varshney</span>
+      </div>
       <Menu
         menuItemStyles={{
           button: {
@@ -17,12 +23,13 @@ const SideNavigation = ({}) => {
           },
         }}
       >
-        <MenuItem component={<Link to="/documentation" />}>
+        <MenuItem component={<Link to="/home" />}>
           {" "}
-          Documentation
+          Dashboard
         </MenuItem>
-        <MenuItem component={<Link to="/calendar" />}> Calendar</MenuItem>
-        <MenuItem component={<Link to="/e-commerce" />}> E-commerce</MenuItem>
+        <MenuItem component={<Link to="/Availability" />}> Hall availability</MenuItem>
+        <MenuItem component={<Link to="/HallBook" />}> Hall Booking</MenuItem>
+        <MenuItem component={<Link to="/Status" />}> Booking Sattus</MenuItem>
       </Menu>
     </Sidebar>
   );
