@@ -46,7 +46,7 @@ const HomePage = () => {
           <span> to check availability of halls</span>
           <span> Hall Bookings can be made for the following halls</span>
         </div>
-        <ol style={{ listStyleType: 'decimal', marginLeft: '1.5rem', marginTop: '2rem' }}>
+        <ol data-testid="hallsList" style={{ listStyleType: 'decimal', marginLeft: '1.5rem', marginTop: '2rem' }}>
           <li>Drawing Hall 48</li>
           <li>Drawing Hall 49</li>
           <li>Vivekanandha Auditorium</li>
@@ -62,11 +62,11 @@ const HomePage = () => {
       {/* Right Column - Steps to Book a Hall in a Box */}
       <div style={{ ...columnStyle2 }}>
         <div style={{ ...boxStyle }}>
-          <div style={{ color: '#333', fontWeight: 'bold', fontSize: '1.6rem', marginBottom: '1rem' }}>
+          <div id="stepsHeading" style={{ color: '#333', fontWeight: 'bold', fontSize: '1.6rem', marginBottom: '1rem' }}>
             STEPS TO BOOK A HALL
           </div>
           <ul style={{ listStyleType: 'disc', marginLeft: '1.5rem' }}>
-            <li>Check the Calender for the Hall availability on specific dates</li>
+            <li>Check the Calendar for the Hall availability on specific dates</li>
             <li>Click "Add new request" and fill in the form and submit</li>
             <li>You will receive an email upon submitting this form and an email after the request is approved</li>
             <li>Meanwhile, the status of your record can be tracked from your dashboard</li>
