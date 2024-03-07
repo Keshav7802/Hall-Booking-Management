@@ -11,7 +11,7 @@ const Header = (props) => {
             <img
               src={logo}
               className="mx-3"
-              alt=""
+              alt="Indian Institute of Technology Ropar logo"
               width={"40vw"}
               height={"40vh"}
             />
