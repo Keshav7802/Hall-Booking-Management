@@ -46,7 +46,7 @@ const HomePage = () => {
           HALLS AVAILABLE FOR BOOKING
         </div>
         <div style={{ marginTop: '2rem' }}>
-          <a style={{ color: '#0066cc', textDecoration: 'underline', cursor: 'pointer' }} href="/calendar">
+          <a style={{ color: '#0066cc', textDecoration: 'underline', cursor: 'pointer' }} href="/login">
             Click here
           </a>
           <span> to check availability of halls</span>
