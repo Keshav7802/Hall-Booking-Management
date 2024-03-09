@@ -9,11 +9,13 @@ import LandingPage from "./components/LandingPage.js";
 import HallAvailability from "./components/HallAvailability.js";
 import BookingStatus from "./components/BookingStatus.js";
 import HallBooking from "./components/HallBooking.js";
+import HallBookingForm from "./components/HallBookingForm.js";
+import Calender from "./components/calender.js";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="vh-100">
+      <div className="flex flex-col min-h-screen">
         <Header />
         <Routes>
           <Route path="" element={<LandingPage />} />
@@ -23,6 +25,8 @@ function App() {
           <Route path="/Availability" element={<HallAvailability />} />
           <Route path="/Status" element={<BookingStatus />} />
           <Route path="/HallBook" element={<HallBooking />} />
+          <Route path="/HallBookForm" element={<HallBooking />} />
+          <Route path="/Cal" element={<Calender />} />
         </Routes>
         <Footer />
       </div>
