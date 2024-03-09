@@ -167,8 +167,6 @@ const HallBooking = () => {
   return (
     <div style={{ display: 'flex' }}>
       <SideNavigation />
-
-      {/* Left Column - Halls Available for Booking */}
       <div style={{ ...columnStyle }}>
         <div style={{ ...textShadow, fontSize: '3rem', fontWeight: 'bold', color: '#333', marginTop: '0.1rem' }}>
           HALL DETAILS

@@ -1,14 +1,20 @@
 import React from 'react';
-import SideNavigation from './SideNavigation';
-import { Link } from 'react-router-dom';
+import Hall_Navigation from './HallAvailability_sidebar';
 import '../css/LoginPage.css';
+const columnStyle = {
+  width: '100%',
+  //padding: '2rem 0rem 3rem 5rem',
+  boxSizing: 'border-box',
+  backgroundColor: '#f0f0f0',
+};
 
-const HomePage = () => {
+const HomePage = () =>  {
   return (
-    <div style={{ display: 'flex' }}>
-      <SideNavigation />
-
-     
+    <div className="flex flex-col md:flex-row">
+      <Hall_Navigation
+      />
+      
+      {/* <div style={{ ...columnStyle }}> <Cal /></div> */}
     </div>
   );
 }
