@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import SideNavigation from "./SideNavigation";
@@ -14,20 +13,6 @@ const columnStyle = {
   boxSizing: "border-box",
   backgroundColor: "#f0f0f0",
 };
-
-// const columnStyle2 = {
-//   width: "60%",
-//   padding: "5rem",
-//   boxSizing: "border-box",
-//   backgroundColor: "#f0f0f0",
-// };
-
-// const boxStyle = {
-//   backgroundColor: "#87CEEB",
-//   padding: "1.5rem",
-//   border: "4px solid #000",
-//   borderRadius: "8px",
-// };
 
 const HallBooking = () => {
   const [selectedDepartment, setSelectedDepartment] = useState("");
@@ -89,7 +74,7 @@ const HallBooking = () => {
   return (
     <>
       <div style={{ display: "flex" }}>
-      <SideNavigation />
+        <SideNavigation />
         {/* Left Column - Halls Available for Booking */}
         <div style={{ ...columnStyle }}>
           <div
@@ -105,12 +90,20 @@ const HallBooking = () => {
           </div>
 
           {/* Department selection dropdown */}
-          <div>
-            <label htmlFor="departmentDropdown">Department: </label>
+          <div className="my-3">
+            <label className="mx-3" htmlFor="departmentDropdown">
+              Department:{" "}
+            </label>
             <select
               id="departmentDropdown"
               value={selectedDepartment}
               onChange={handleDepartmentChange}
+              style={{
+                borderRadius: "5px",
+                height: "25px",
+                border: "0.5px solid #212529",
+                width: "200px",
+              }}
             >
               <option value="">All</option>
               <option value="Major">Auditorium</option>
@@ -126,26 +119,34 @@ const HallBooking = () => {
           </div>
 
           {/* Search bar for halls */}
-          <div>
-            <label htmlFor="hallSearch">Search Halls: </label>
+          <div className="my-3">
+            <label className="mx-3" htmlFor="hallSearch">
+              Search Halls:{" "}
+            </label>
             <input
               type="text"
               id="hallSearch"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
+              style={{
+                borderRadius: "5px",
+                height: "25px",
+                border: "0.5px solid #212529",
+                width: "200px",
+              }}
             />
           </div>
-
           {/* Display filtered halls as cards */}
           <div>
-            <h3>Available Halls:</h3>
+            <h2 className="mx-3"><b>Available Halls</b></h2>
             {filteredHalls.map((hall) => (
               <div
                 key={hall.id}
                 style={{
-                  border: "1px solid #ccc",
+                  border: "1px solid #212529",
                   padding: "10px",
                   margin: "10px",
+                  borderRadius: "5px"
                 }}
               >
                 <img
@@ -155,50 +156,30 @@ const HallBooking = () => {
                 />
                 <h4>{hall.name}</h4>
                 <Link to={`/hall-details/${hall.id}`}>
-                  <button>View Hall Details</button>
-                </Link>
-                <Link to={`/book-hall/${hall.id}`}>
-                  <button>Book Hall</button>
-                </Link>
-              </div>
-            ))}
-          </div>
-        {/* Display filtered halls as cards */}
-        <div>
-          <h3>Available Halls:</h3>
-          {filteredHalls.map((hall) => (
-            <div key={hall.id} style={{ border: '1px solid #ccc', padding: '10px', margin: '10px' }}>
-              <img src={"./assets/audi.jpg"} alt={hall.name} style={{ maxWidth: '100%' }} />
-              <h4>{hall.name}</h4>
-              <Link to={`/hall-details/${hall.id}`}>
-                <button   style={{ backgroundColor: '#007bff', color: '#fff', padding: '5px 20px', borderRadius: '10px', border: 'none', cursor: 'pointer' }} >View Hall Details</button>
-              </Link>
-              {/* <Link to={`/book-hall/${hall.id}`}> */}
-              <Link to={`/HallBookForm`}>
-                <button  style={{ backgroundColor: '#007bff', color: '#fff', padding: '5px 20px', borderRadius: '10px', border: 'none', cursor: 'pointer' }}  >Book Hall</button>
-              </Link>
                   <button
                     style={{
-                      backgroundColor: "#007bff",
+                      backgroundColor: "#212529",
                       color: "#fff",
                       padding: "5px 20px",
                       borderRadius: "10px",
                       border: "none",
                       cursor: "pointer",
+                      marginRight: "3px",
                     }}
                   >
                     View Hall Details
                   </button>
-                {/* <Link to={`/book-hall/${hall.id}`}> */}
-                <Link to="/HallBookForm">
+                </Link>
+                <Link to={`/HallBookForm`}>
                   <button
                     style={{
-                      backgroundColor: "#007bff",
+                      backgroundColor: "#212529",
                       color: "#fff",
                       padding: "5px 20px",
                       borderRadius: "10px",
                       border: "none",
                       cursor: "pointer",
+                      marginLeft: "3px",
                     }}
                   >
                     Book Hall
@@ -206,44 +187,6 @@ const HallBooking = () => {
                 </Link>
               </div>
             ))}
-            {/* Search bar for halls */}
-            <div>
-              <label htmlFor="hallSearch">Search Halls: </label>
-              <input
-                type="text"
-                id="hallSearch"
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-              />
-            </div>
-
-            {/* Display filtered halls as cards */}
-            <div>
-              <h3>Available Halls:</h3>
-              {filteredHalls.map((hall) => (
-                <div
-                  key={hall.id}
-                  style={{
-                    border: "1px solid #ccc",
-                    padding: "10px",
-                    margin: "10px",
-                  }}
-                >
-                  <img
-                    src={"./assets/audi.jpg"}
-                    alt={hall.name}
-                    style={{ maxWidth: "100%" }}
-                  />
-                  <h4>{hall.name}</h4>
-                  <Link to={`/hall-details/${hall.id}`}>
-                    <button>View Hall Details</button>
-                  </Link>
-                  <Link to={`/book-hall/${hall.id}`}>
-                    <button>Book Hall</button>
-                  </Link>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>

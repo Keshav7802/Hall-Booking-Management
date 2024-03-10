@@ -3,7 +3,6 @@ import "../css/LoginPage.css";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link, useLocation } from "react-router-dom";
 import profileIcon from "../assets/profile.jpg";
-import Cal from "./Calender";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -12,8 +11,9 @@ import {
   faInfoCircle,
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import Calendar from "./Calender";
 
-const SideNavigation = () => {
+const SideNavigation = (props) => {
   const location = useLocation();
 
   return (
@@ -91,7 +91,7 @@ const SideNavigation = () => {
           </MenuItem>
         </div>
       </Menu>
-
+      {props.calendar && <Calendar/>}
       {/* Logout Menu */}
       <Menu
         menuItemStyles={{
@@ -109,7 +109,7 @@ const SideNavigation = () => {
         }}
       >
         <div className="menu-wrapper">
-          <MenuItem>
+          <MenuItem component={<Link to="/login" />}>
             <FontAwesomeIcon
               icon={faSignOutAlt}
               style={{ marginRight: "8px", transform: "rotate(180deg)" }}

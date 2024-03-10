@@ -1,6 +1,6 @@
 import React from "react";
-import Hall_Navigation from "./HallAvailabilitySidebar";
 import "../css/LoginPage.css";
+import SideNavigation from "./SideNavigation";
 const columnStyle = {
   width: "100%",
   //padding: '2rem 0rem 3rem 5rem',
@@ -11,7 +11,7 @@ const columnStyle = {
 const HomePage = () => {
   return (
     <div className="flex flex-col md:flex-row">
-      <Hall_Navigation />
+      <SideNavigation calendar="true"/>
 
       {/* <div style={{ ...columnStyle }}> <Cal /></div> */}
     </div>
