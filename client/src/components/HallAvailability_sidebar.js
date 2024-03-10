@@ -5,7 +5,7 @@ import "../css/LoginPage.css";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link, useLocation } from "react-router-dom";
 import profileIcon from "../assets/profile.jpg";
-import Cal from "../components/calender";
+import Cal from "./calendarMini";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -96,6 +96,7 @@ const SideNavigation = () => {
 
       <div
         style={{
+            marginTop:"-20px",
           padding: "27px 100px 100px 27px",
           boxSizing: "border-box",
           width: "100%",
@@ -117,7 +118,7 @@ const SideNavigation = () => {
         }}
         style={{
           position: "absolute",
-          bottom: "15px",
+          bottom: "100px",
           width: "100%",
         }}
       >
@@ -125,7 +126,7 @@ const SideNavigation = () => {
           <MenuItem>
             <FontAwesomeIcon
               icon={faSignOutAlt}
-              style={{ marginRight: "8px", transform: "rotate(180deg)" }}
+              style={{ marginRight: "8px" }}
             />
             <span style={{ marginLeft: "12px" }}>Logout</span>
           </MenuItem>

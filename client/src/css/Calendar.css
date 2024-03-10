@@ -1,0 +1,31 @@
+.room-scheduler {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Adjust the column widths as needed */
+    grid-template-rows: auto auto;
+    gap: 10px; /* Adjust the gap between columns and rows */
+  }
+  
+  .room-names {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .room-name {
+    background-color: #f0f0f0; /* Room name background color */
+    padding: 8px;
+  }
+  
+  .time-slots {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .time-slot {
+    background-color: #e0e0e0; /* Time slot background color */
+    padding: 8px;
+  }
+  
+  .calendar-container {
+    grid-column: span 1;
+  }
+  
