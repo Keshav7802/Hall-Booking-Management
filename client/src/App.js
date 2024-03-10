@@ -10,7 +10,7 @@ import HallAvailability from "./components/HallAvailability.js";
 import BookingStatus from "./components/BookingStatus.js";
 import HallBooking from "./components/HallBooking.js";
 import HallBookingForm from "./components/HallBookingForm.js";
-import Calender from "./components/calender.js";
+import Calender from "./components/Calender.js";
 
 function App() {
   return (
