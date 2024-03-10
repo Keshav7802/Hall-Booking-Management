@@ -208,11 +208,10 @@ const HallBooking = () => {
               <img src={"./assets/audi.jpg"} alt={hall.name} style={{ maxWidth: '100%' }} />
               <h4>{hall.name}</h4>
               <Link to={`/hall-details/${hall.id}`}>
-                <button   style={{ backgroundColor: '#007bff', color: '#fff', padding: '5px 20px', borderRadius: '10px', border: 'none', cursor: 'pointer' }} >View Hall Details</button>
+                <button>View Hall Details</button>
               </Link>
-              {/* <Link to={`/book-hall/${hall.id}`}> */}
-              <Link to={`/HallBookForm`}>
-                <button  style={{ backgroundColor: '#007bff', color: '#fff', padding: '5px 20px', borderRadius: '10px', border: 'none', cursor: 'pointer' }}  >Book Hall</button>
+              <Link to={`/book-hall/${hall.id}`}>
+                <button>Book Hall</button>
               </Link>
             </div>
           ))}

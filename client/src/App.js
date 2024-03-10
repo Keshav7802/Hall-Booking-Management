@@ -25,9 +25,7 @@ function App() {
           <Route path="/Availability" element={<HallAvailability />} />
           <Route path="/Status" element={<BookingStatus />} />
           <Route path="/HallBook" element={<HallBooking />} />
-          <Route path="/HallBookForm" element={<HallBookingForm />} />
-
-          {/* <Route path="/book-hall/"hallId" component={<HallBookingForm />} /> */}
+          <Route path="/HallBookForm" element={<HallBooking />} />
           <Route path="/Cal" element={<Calender />} />
         </Routes>
         <Footer />
