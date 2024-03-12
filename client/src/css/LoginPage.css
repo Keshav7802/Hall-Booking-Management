@@ -18,6 +18,21 @@
 } 
 */
 
+/* sidebar.css */
+
+.active {
+    background-color: #13395e;
+    color: #b6c8d9;
+  }
+  
+
+  /* LoginPage.css or your custom styles file */
+
+.menu-wrapper {
+    border-radius: 10px; /* Adjust the radius as needed */
+    overflow: hidden;
+  }
+  
 .container{
     background-color: #fff;
     border-radius: 30px;
@@ -114,6 +129,7 @@
     width: 50%;
     opacity: 0;
     z-index: 1;
+    color:#333;
 }
 
 .container.active .sign-up{

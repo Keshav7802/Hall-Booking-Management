@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CaptchaImage from "./CaptchaImage";
 import "../css/LoginPage.css";
+import { Link } from "react-router-dom";
 function LoginPage() {
   const [contain, setcontainer] = useState(false);
   const [loginError, setLoginError] = useState(false);
@@ -50,7 +51,7 @@ function LoginPage() {
 
   return (
     <>
-      <div className={`container ${contain ? "active" : ""}`} id="container">
+      <div className={`container ${contain ? "active" : ""}`} id="container" style={{marginBottom : "4rem", marginTop : "4rem"}}>
         <div className="form-container sign-up">
           <form>
             <h1>Registration</h1>
@@ -102,12 +103,14 @@ function LoginPage() {
             </div>
             <CaptchaImage />
             <div className="input-container">
-            <i className="fas fa-refresh"></i>
+              <i className="fas fa-refresh"></i>
               <input type="text" placeholder="Enter the above code" />
             </div>
 
-            <a href="#">Forget Your Password?</a>
-            <button>Login</button>
+            <Link to="#">Forget Your Password?</Link>
+            <Link className="btn btn-dark" to="/home" role="button" style={{backgroundColor: " rgb(45,42,42)"}}>
+              <text className="mx-4 my-3" style={{color:"white"}}><b>Login</b></text>
+            </Link>
           </form>
         </div>
         <div className="toggle-container">
@@ -131,9 +134,9 @@ function LoginPage() {
                   <li>
                     If you are facing any problems in logging in or registering,
                     please contact us at{" "}
-                    <a href="mailto:aracademcis@iitrpr.ac.in">
+                    <Link to="mailto:aracademcis@iitrpr.ac.in">
                       aracademcis@iitrpr.ac.in
-                    </a>
+                    </Link>
                     .
                   </li>
                 </ul>
@@ -153,16 +156,16 @@ function LoginPage() {
                   </li>
                   <br></br>
                   <li>
-                    If you haven’t registered yet, click to register
-                    through your student email ID to book halls.
+                    If you haven’t registered yet, click to register through
+                    your student email ID to book halls.
                   </li>
                   <br></br>
                   <li>
                     If you are facing any problems in logging in or registering,
                     please contact us at{" "}
-                    <a href="mailto:aracademcis@iitrpr.ac.in">
+                    <Link to="mailto:aracademcis@iitrpr.ac.in">
                       aracademcis@iitrpr.ac.in
-                    </a>
+                    </Link>
                     .
                   </li>
                 </ul>
