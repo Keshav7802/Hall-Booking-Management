@@ -1,22 +1,19 @@
-import React from 'react';
-import Hall_Navigation from './HallAvailability_sidebar';
-import '../css/LoginPage.css';
+import React from "react";
+import "../css/LoginPage.css";
+import SideNavigation from "./SideNavigation";
 const columnStyle = {
-  width: '100%',
+  width: "100%",
   //padding: '2rem 0rem 3rem 5rem',
-  boxSizing: 'border-box',
-  backgroundColor: '#f0f0f0',
+  boxSizing: "border-box",
+  backgroundColor: "#f0f0f0",
 };
 
-const HomePage = () =>  {
+const HomePage = () => {
   return (
-    <div className="flex flex-col md:flex-row">
-      <Hall_Navigation
-      />
-      
-      {/* <div style={{ ...columnStyle }}> <Cal /></div> */}
+    <div style={{ display: "flex" , height:"85vh"}}>
+      <SideNavigation calendar="true"/>
     </div>
   );
-}
+};
 
 export default HomePage;

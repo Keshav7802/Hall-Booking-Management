@@ -55,25 +55,23 @@
 //           </div>
 //         </div>
 //       </nav>
-      
-//       </div>
-      
 
-     
+//       </div>
+
 //     </div>
 //   );
 // }
 
 // export default HomePage;
 
-import React from 'react';
-import SideNavigation from './SideNavigation';
-import { Link } from 'react-router-dom';
-import '../css/LoginPage.css';
+import React from "react";
+import SideNavigation from "./SideNavigation";
+import { Link } from "react-router-dom";
+import "../css/LoginPage.css";
 
 const HomePage = () => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div style={{ display: "flex" , height:"85vh"}}>
       <SideNavigation />
       {/* <nav className="bg-white border-gray-200">
         <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">
@@ -114,6 +112,6 @@ const HomePage = () => {
       </nav> */}
     </div>
   );
-}
+};
 
 export default HomePage;
