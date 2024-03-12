@@ -19,7 +19,7 @@ const SideNavigation = () => {
   const location = useLocation();
 
   return (
-    <Sidebar style={{ height: "630px", position: "relative" }}>
+    <Sidebar style={{ height: "650px", position: "relative" }}>
       <div
         style={{
           padding: "15px",
@@ -94,7 +94,16 @@ const SideNavigation = () => {
         </div>
       </Menu>
 
-      
+      <div
+        style={{
+          padding: "27px 100px 100px 27px",
+          boxSizing: "border-box",
+          width: "100%",
+          overflow: "hidden",
+        }}
+      >
+        <Cal />
+      </div>
 
       {/* Logout Menu */}
       <Menu

@@ -18,6 +18,26 @@
 } 
 */
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* sidebar.css */
+
+.active {
+    background-color: #13395e;
+    color: #b6c8d9;
+  }
+  
+
+  /* LoginPage.css or your custom styles file */
+
+.menu-wrapper {
+    border-radius: 10px; /* Adjust the radius as needed */
+    overflow: hidden;
+  }
+  
 .container{
     background-color: #fff;
     border-radius: 30px;

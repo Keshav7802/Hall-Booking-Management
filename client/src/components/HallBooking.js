@@ -170,8 +170,6 @@ const HallBooking = () => {
   return (
     <div style={{ display: 'flex' }}>
       <SideNavigation />
-
-      {/* Left Column - Halls Available for Booking */}
       <div style={{ ...columnStyle }}>
         <div style={{ ...textShadow, fontSize: '3rem', fontWeight: 'bold', color: '#333', marginTop: '0.1rem' }}>
           HALL DETAILS
@@ -209,60 +207,17 @@ const HallBooking = () => {
         <div>
           <h3>Available Halls:</h3>
           {filteredHalls.map((hall) => (
-        //    <div
-        //    key={hall.id}
-        //    style={{
-        //      border: '1px solid #ccc',
-        //      padding: '10px',
-        //      margin: '10px',
-        //      width: '45%', // Adjust the width to control the shape of the container
-        //      boxSizing: 'border-box', // Include padding and border in the element's total width and height
-        //      display: 'flex', // Use flexbox
-        //      flexDirection: 'column', // Stack items vertically
-        //      alignItems: 'center', // Center items horizontally
-        //      justifyContent: 'center', // Center items vertically
-        //      textAlign: 'center', // Center text
-        //    }}
-        //  >
-        //    <img src={hall.picture} alt={hall.name} style={{ maxWidth: '100%', marginBottom: '10px' }} />
-        //    <h4>{hall.name}</h4>
-        //    <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
-        //      <Link to={`/hall-details/${hall.id}`}>
-        //        <button>View Hall Details</button>
-        //      </Link>
-        //      <Link to={`/book-hall/${hall.id}`}>
-        //        <button>Book Hall</button>
-        //      </Link>
-        //    </div>
-        //  </div>
-
-        <div
-        key={hall.id}
-        style={{
-          border: '1px solid #ccc',
-          padding: '10px',
-          margin: '10px',
-          width: '45%', // Adjust the width to control the shape of the container
-          boxSizing: 'border-box', // Include padding and border in the element's total width and height
-          display: 'flex', // Use flexbox
-          flexDirection: 'column', // Stack items vertically
-          alignItems: 'center', // Center items horizontally
-          justifyContent: 'center', // Center items vertically
-          textAlign: 'center', // Center text
-        }}
-      >
-        <img src={hall.picture} alt={hall.name} style={{ maxWidth: '100%', marginBottom: '10px' }} />
-        <h4>{hall.name}</h4>
-        <div style={{ display: 'flex', justifyContent: 'center', width: '150%' }}>
-          <Link to={`/hall-details/${hall.id}`}>
-            <button style={{ margin: '6px' }}>View Hall Details</button>
-          </Link>
-          <Link to={`/book-hall/${hall.id}`}>
-            <button style={{ margin: '6px' }}>Book Hall</button>
-          </Link>
-        </div>
-      </div>
-         
+            <div key={hall.id} style={{ border: '1px solid #ccc', padding: '10px', margin: '10px' }}>
+              <img src={"./assets/audi.jpg"} alt={hall.name} style={{ maxWidth: '100%' }} />
+              <h4>{hall.name}</h4>
+              <Link to={`/hall-details/${hall.id}`}>
+                <button   style={{ backgroundColor: '#007bff', color: '#fff', padding: '5px 20px', borderRadius: '10px', border: 'none', cursor: 'pointer' }} >View Hall Details</button>
+              </Link>
+              {/* <Link to={`/book-hall/${hall.id}`}> */}
+              <Link to={`/HallBookForm`}>
+                <button  style={{ backgroundColor: '#007bff', color: '#fff', padding: '5px 20px', borderRadius: '10px', border: 'none', cursor: 'pointer' }}  >Book Hall</button>
+              </Link>
+            </div>
           ))}
         </div>
       </div>
