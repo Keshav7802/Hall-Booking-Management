@@ -71,7 +71,7 @@ import "../css/LoginPage.css";
 
 const HomePage = () => {
   return (
-    <div style={{ display: "flex" , height:"85vh"}}>
+    <div style={{ display: "flex" , height:"85vh", marginTop: "-2rem"}}>
       <SideNavigation />
       {/* <nav className="bg-white border-gray-200">
         <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">

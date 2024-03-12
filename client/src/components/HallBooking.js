@@ -34,10 +34,12 @@ const sidebarStyle = {
 };
 
 const contentStyle = {
+  display: 'flex',
+  flexDirection: 'column', // Updated to column layout
   marginLeft: '250px',
-  width: '90%',// Same as the width of the sidebar
+  width: '90%', // Same as the width of the sidebar
   boxSizing: 'border-box',
-  padding: '0rem 0rem 0rem 1rem',
+  padding: '2rem 1rem 0rem 1rem', // Adjusted padding for better spacing
 };
 
 const HallBooking = () => {
@@ -82,10 +84,13 @@ const HallBooking = () => {
 
   return (
     <>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", marginTop: "-2rem" }}>
+      <div style={sidebarStyle}>
         <SideNavigation />
+        </div>
+
         {/* Left Column - Halls Available for Booking */}
-        <div style={{ ...columnStyle, overflow: "auto" }}>
+        <div style={contentStyle}>
           <div
             style={{
               ...textShadow,
@@ -158,10 +163,10 @@ const HallBooking = () => {
                 <div
                   key={hall.id}
                   style={{
-                    border: "1px solid #212529",
+                    border: "3px solid #212529",
                     padding: "10px",
                     margin: "10px",
-                    borderRadius: "5px",
+                    borderRadius: "20px",
                     width: "calc(50% - 20px)", // 50% width with margin
                     boxSizing: "border-box", // Include padding and border in the width calculation
                     height: "340px",
@@ -171,7 +176,7 @@ const HallBooking = () => {
                     src={hall.picture}
                     alt={hall.name}
                     
-                    style={{ maxWidth: "90%", margin: "0 auto", maxHeight: "230px" ,borderRadius: "5px"}}
+                    style={{ maxWidth: "90%", marginLeft: "7rem", height: "230px" ,borderRadius: "5px", width: "350px"}}
                   />
 
                   <h2 style={{ textAlign: "center", margin: "10px 0", fontSize: "24px" }}>{hall.name}</h2>

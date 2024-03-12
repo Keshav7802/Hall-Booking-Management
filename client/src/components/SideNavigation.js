@@ -107,7 +107,7 @@ const SideNavigation = (props) => {
         }}
         style={{
           position: "absolute",
-          bottom: "60px",
+          bottom: "30px",
           width: "100%",
         }}
       >
