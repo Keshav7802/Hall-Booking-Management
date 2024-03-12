@@ -14,6 +14,7 @@ const containerStyle = {
   marginTop: '-2em',
 };
 
+<<<<<<< HEAD
 const sidebarStyle = {
   position: 'fixed',
   backgroundColor: '#f0f0f0',
@@ -141,6 +142,12 @@ const HallAvailable = () => {
         <div style = {{marginTop:'2rem'}}>
         <CalendarMain selectedDate={selectedDate}/></div>
       </div>
+=======
+const HomePage = () => {
+  return (
+    <div style={{ display: "flex" , height:"85vh"}}>
+      <SideNavigation calendar="true"/>
+>>>>>>> 39e720e3f691f1b7b6a4c3d71ce65db32353d54c
     </div>
   );
 };

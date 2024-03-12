@@ -95,7 +95,11 @@ const HallBooking = () => {
         <SideNavigation />
         </div>
         {/* Left Column - Halls Available for Booking */}
+<<<<<<< HEAD
         <div style={contentStyle}>
+=======
+        <div style={{ ...columnStyle , overflow:"auto"}}>
+>>>>>>> 39e720e3f691f1b7b6a4c3d71ce65db32353d54c
           <div
             style={{
               ...textShadow,
@@ -157,7 +161,9 @@ const HallBooking = () => {
           </div>
           {/* Display filtered halls as cards */}
           <div>
-            <h2 className="mx-3"><b>Available Halls</b></h2>
+            <h2 className="mx-3">
+              <b>Available Halls</b>
+            </h2>
             {filteredHalls.map((hall) => (
               <div
                 key={hall.id}
@@ -165,7 +171,7 @@ const HallBooking = () => {
                   border: "1px solid #212529",
                   padding: "10px",
                   margin: "10px",
-                  borderRadius: "5px"
+                  borderRadius: "5px",
                 }}
               >
                 <img
@@ -174,7 +180,13 @@ const HallBooking = () => {
                   style={{ maxWidth: "100%" }}
                 />
                 <h4>{hall.name}</h4>
-                <Link to={`/hall-details/${hall.id}`}>
+                <Link
+                  to="/HallDetails"
+                  state={{
+                    Name: "HELLO",
+                    Department: "CSE",
+                  }}
+                >
                   <button
                     style={{
                       backgroundColor: "#212529",
@@ -189,7 +201,7 @@ const HallBooking = () => {
                     View Hall Details
                   </button>
                 </Link>
-                <Link to={`/HallBookForm`}>
+                <Link to={"/HallBookForm"}>
                   <button
                     style={{
                       backgroundColor: "#212529",

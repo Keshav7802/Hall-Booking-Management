@@ -19,13 +19,14 @@ const SideNavigation = (props) => {
   const location = useLocation();
 
   return (
-    <Sidebar style={{ height: "630px", position: "relative" }}>
+    <Sidebar style={{ position:"static", zIndex: 0,overflow:"hidden" , height:"85vh"}}>
       <div
         style={{
           padding: "15px",
           borderBottom: "1px solid #eee",
           display: "flex",
           alignItems: "center",
+          backgroundColor: "white",
         }}
       >
         <img
@@ -93,7 +94,7 @@ const SideNavigation = (props) => {
           </MenuItem>
         </div>
       </Menu>
-      {props.calendar && <Calendar/>}
+      {props.calendar && <Calendar />}
       {/* Logout Menu */}
       <Menu
         menuItemStyles={{

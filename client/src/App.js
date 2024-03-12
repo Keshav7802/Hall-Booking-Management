@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Footer from "./components/Footer.js";
 import Header from "./components/Header.js";
@@ -10,7 +10,12 @@ import HallAvailability from "./components/HallAvailability.js";
 import BookingStatus from "./components/BookingStatus.js";
 import HallBooking from "./components/HallBooking.js";
 import HallBookingForm from "./components/HallBookingForm.js";
+<<<<<<< HEAD
 import Calender from "./components/Calendar.js";
+=======
+import Calender from "./components/Calender.js";
+import HallInfo from "./components/HallInfo.js";
+>>>>>>> 39e720e3f691f1b7b6a4c3d71ce65db32353d54c
 
 function App() {
   return (
@@ -26,8 +31,7 @@ function App() {
           <Route path="/Status" element={<BookingStatus />} />
           <Route path="/HallBook" element={<HallBooking />} />
           <Route path="/HallBookForm" element={<HallBookingForm />} />
-
-          {/* <Route path="/book-hall/"hallId" component={<HallBookingForm />} /> */}
+          <Route path="/HallDetails" element={<HallInfo/>}/>
           <Route path="/Cal" element={<Calender />} />
         </Routes>
         <Footer />
