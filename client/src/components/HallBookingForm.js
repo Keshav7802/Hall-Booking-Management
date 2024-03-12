@@ -225,7 +225,6 @@ const HallBookingForm = () => {
     </div>
   );
 };
-};
 
-export default HallBookingForm;
+
 export default HallBookingForm;
