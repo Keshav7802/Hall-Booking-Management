@@ -8,19 +8,19 @@ var textShadow = {
 };
 
 const columnStyle = {
-  width: '40%',
-  padding: '2rem 0rem 3rem 5rem',
-  boxSizing: 'border-box',
-  backgroundColor: '#f0f0f0',
-  innerHeight : '100%',
+  width: "40%",
+  padding: "2rem 0rem 3rem 5rem",
+  boxSizing: "border-box",
+  backgroundColor: "#f0f0f0",
+  innerHeight: "100%",
 };
 
 const columnStyle2 = {
-  width: '60%',
-  padding: '5rem',
-  boxSizing: 'border-box',
-  backgroundColor: '#f0f0f0',
-  innerHeight : '100%',
+  width: "60%",
+  padding: "5rem",
+  boxSizing: "border-box",
+  backgroundColor: "#f0f0f0",
+  innerHeight: "100%",
 };
 
 const boxStyle = {
@@ -33,7 +33,12 @@ const boxStyle = {
 const HomePage = () => {
   return (
     <>
-      <div style={{ display: "flex" }}>
+      <div
+        style={{
+          display: "flex",
+          height:"85vh"
+        }}
+      >
         <SideNavigation />
         {/* Left Column - Halls Available for Booking */}
         <div style={{ ...columnStyle }}>
@@ -170,7 +175,7 @@ export default HomePage;
 //         <div style={{ ...textShadow, fontSize: '3rem', fontWeight: 'bold', color: '#333', marginTop: '0.1rem' }}>
 //           HALL BOOKING
 //         </div>
-       
+
 //         <div style={{ marginTop: '2rem' }}>
 //           <a style={{ color: '#0066cc', textDecoration: 'underline', cursor: 'pointer' }} href="/calendar">
 //             Click here
@@ -210,4 +215,3 @@ export default HomePage;
 // }
 
 // export default HomePage;
-

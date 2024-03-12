@@ -10,10 +10,8 @@ const columnStyle = {
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col md:flex-row">
+    <div style={{ display: "flex" , height:"85vh"}}>
       <SideNavigation calendar="true"/>
-
-      {/* <div style={{ ...columnStyle }}> <Cal /></div> */}
     </div>
   );
 };

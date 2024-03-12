@@ -8,29 +8,21 @@ function Calendar() {
   return (
     <div
       style={{
-        marginLeft: "20px",
-        width: "80%",
+        marginLeft: "34px",
+        width: "50%",
         overflow: "hidden",
         border: "1px solid #212529",
         borderRadius: "5px",
       }}
     >
-      <div
-        style={{
-          width: "150%",
-          overflow: "hidden",
-          borderRadius: "5px",
-        }}
-      >
-        <DatePicker
-          selected={selectedDate}
-          onChange={(date) => setSelectedDate(date)}
-          className="custom-calendar"
-          dateFormat="dd/MM/yyyy"
-          calendarClassName="custom-calendar"
-          popperProps={{ placement: "bottom" }}
-        />
-      </div>
+      <DatePicker
+        selected={selectedDate}
+        onChange={(date) => setSelectedDate(date)}
+        className="custom-calendar"
+        dateFormat="dd/MM/yyyy"
+        calendarClassName="custom-calendar"
+        popperProps={{ placement: "bottom" }}
+      />
     </div>
   );
 }
