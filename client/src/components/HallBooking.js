@@ -97,7 +97,7 @@ const HallBooking = () => {
               fontSize: "3rem",
               fontWeight: "bold",
               color: "#333",
-              marginTop: "0.1rem",
+              marginTop: "-1rem",
             }}
           >
             HALL DETAILS
