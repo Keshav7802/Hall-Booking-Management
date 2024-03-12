@@ -36,7 +36,7 @@ const boxStyle = {
 
 const HomePage = () => {
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex', marginTop: '-2rem' }}>
       {/* Left Column - Halls Available for Booking */}
       <div style={{ ...columnStyle }}>
         <div style={{ ...textShadow, fontSize: '3rem', fontWeight: 'bold', color: '#333', marginTop: '0.1rem'}}>

@@ -5,7 +5,7 @@ import "../css/LoginPage.css";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link, useLocation } from "react-router-dom";
 import profileIcon from "../assets/profile.jpg";
-import Cal from "../components/calender";
+import Cal from "./calendarMini";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,

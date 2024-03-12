@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="decoration-white mt-auto" style={{ backgroundColor: "#151515" , padding : "1rem", }}>
+    <footer className="decoration-white mt-auto" style={{ backgroundColor: "#151515" , padding : "1rem", zIndex: 1000, position: 'relative' }}>
       <div className="container-fluid">
         <div className="row">
           <div className="col-6">
