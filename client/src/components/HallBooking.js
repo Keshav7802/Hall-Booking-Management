@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import SideNavigation from "./SideNavigation";
 import "../css/LoginPage.css";
+import Audi from "../assets/audi.jpg"
+import cs_lab from "../assets/cs_lab.jpg"
+import ee_sh from "../assets/ee_sh.jpg"
 
 const textShadow = {
   textShadow: "5px 5px 10px rgba(80, 80, 80, 0.75)",
@@ -121,7 +124,7 @@ const HallBooking = () => {
                 }}
               >
                 <img
-                  src={"./assets/audi.jpg"}
+                  src={Audi}
                   alt={hall.name}
                   style={{ maxWidth: "100%" }}
                 />
