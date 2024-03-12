@@ -1,11 +1,8 @@
-
-
 import React from "react";
 import "../css/LoginPage.css";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link, useLocation } from "react-router-dom";
 import profileIcon from "../assets/profile.jpg";
-import Cal from "../components/calender";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -14,18 +11,20 @@ import {
   faInfoCircle,
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import Calendar from "./Calender";
 
-const SideNavigation = () => {
+const SideNavigation = (props) => {
   const location = useLocation();
 
   return (
-    <Sidebar style={{ height: "630px", position: "relative" }}>
+    <Sidebar style={{ position:"static", zIndex: 0,overflow:"hidden" , height:"85vh"}}>
       <div
         style={{
           padding: "15px",
           borderBottom: "1px solid #eee",
           display: "flex",
           alignItems: "center",
+          backgroundColor: "white",
         }}
       >
         <img
@@ -93,9 +92,7 @@ const SideNavigation = () => {
           </MenuItem>
         </div>
       </Menu>
-
-      
-
+      {props.calendar && <Calendar />}
       {/* Logout Menu */}
       <Menu
         menuItemStyles={{
@@ -113,7 +110,7 @@ const SideNavigation = () => {
         }}
       >
         <div className="menu-wrapper">
-          <MenuItem>
+          <MenuItem component={<Link to="/login" />}>
             <FontAwesomeIcon
               icon={faSignOutAlt}
               style={{ marginRight: "8px", transform: "rotate(180deg)" }}

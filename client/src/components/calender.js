@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function CalendarCom() {
+function Calendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   return (
     <div
       style={{
-        padding: "5px",
-        boxSizing: "border-box",
-        width: "95%",
-        // overflow: "hidden",
+        marginLeft: "34px",
+        width: "50%",
+        overflow: "hidden",
+        border: "1px solid #212529",
+        borderRadius: "5px",
       }}
     >
       <DatePicker
@@ -26,4 +27,4 @@ function CalendarCom() {
   );
 }
 
-export default CalendarCom;
+export default Calendar;
