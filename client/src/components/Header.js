@@ -17,16 +17,17 @@ const Header = (props) => {
              style={{ marginRight: '10px', marginLeft: '-10px'}}
 
             />
-            <div style={{ fontWeight: "bold" }}>Indian Institute of Technology Ropar</div>
+            <div style={{ fontWeight: "bold", marginLeft: "1rem", alignItems: "center" }}>Indian Institute of Technology Ropar</div>
           </h5>
-          <h5 className="text-end" style={{ color: "white" }}>
+          <h5 className="text-end" style={{ color: "white", marginRight: '1rem'}}>
             Campus Hall Booking
           </h5>
         </div>
       </nav>
-      <div style={{ height: '100px' }}></div> {/* Add a placeholder to prevent content from being obscured */}
+      <div style={{ height: '100px' }}></div> 
     </>
   );
 };
 
 export default Header;
+
