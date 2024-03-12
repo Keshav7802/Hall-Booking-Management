@@ -67,7 +67,7 @@ function LoginPage() {
             </div>
 
             <Link to="#">Forget Your Password?</Link>
-            <Link className="btn btn-dark" to="/home" role="button">
+            <Link className="btn btn-dark" to="/home" role="button" style={{backgroundColor: " rgb(45,42,42)"}}>
               <text className="mx-4 my-3" style={{color:"white"}}><b>Login</b></text>
             </Link>
           </form>

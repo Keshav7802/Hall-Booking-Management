@@ -14,6 +14,23 @@ const columnStyle = {
   backgroundColor: "#f0f0f0",
 };
 
+const containerStyle = {
+  display: 'flex',
+  marginTop: '-2em',
+};
+
+const sidebarStyle = {
+  position: 'fixed',
+  backgroundColor: '#f0f0f0',
+};
+
+const contentStyle = {
+  marginLeft: '250px',
+  width: '90%',// Same as the width of the sidebar
+  boxSizing: 'border-box',
+  padding: '0rem 0rem 0rem 1rem',
+};
+
 const HallBooking = () => {
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [searchInput, setSearchInput] = useState("");
@@ -73,10 +90,12 @@ const HallBooking = () => {
 
   return (
     <>
-      <div style={{ display: "flex" }}>
+      <div style={containerStyle}>
+        <div style={sidebarStyle}>
         <SideNavigation />
+        </div>
         {/* Left Column - Halls Available for Booking */}
-        <div style={{ ...columnStyle }}>
+        <div style={contentStyle}>
           <div
             style={{
               ...textShadow,

@@ -7,8 +7,9 @@ const Footer = () => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-6">
-            <h5 className="text-start mx-3" style={{ color: "white" }}>
-              Campus Hall Booking System
+            <h5 className="text-start mx-3" >
+              <div style={{display: "flex", color: "grey", fontSize: '18px' }}>Copyright @ 
+              <div style={{ color: "white", marginLeft : '0.8rem'}}>Campus Hall Booking System</div></div>
             </h5>
           </div>
           <div className="col-6 text-end">

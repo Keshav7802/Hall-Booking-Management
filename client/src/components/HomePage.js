@@ -43,13 +43,13 @@ const HomePage = () => {
         </div>
        
         <div style={{ marginTop: '2rem' }}>
-          <a style={{ color: '#0066cc', textDecoration: 'underline', cursor: 'pointer' }} href="/calendar">
+          <a style={{ color: '#0066cc', textDecoration: 'underline', cursor: 'pointer' }} href="/Availability">
             Click here
           </a>
-          <span> to check availability of halls</span>
+          <span> to check availability of Halls</span><br></br>
           <span> Hall Bookings can be made for the following halls</span>
         </div>
-        <ol style={{ listStyleType: 'decimal', marginLeft: '1.5rem', marginTop: '2rem' }}>
+        <ol style={{ listStyleType: 'disc', marginLeft: '1.5rem', marginTop: '2rem' }}>
           <li>Drawing Hall 48</li>
           <li>Drawing Hall 49</li>
           <li>Vivekanandha Auditorium</li>

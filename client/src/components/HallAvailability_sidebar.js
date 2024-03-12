@@ -1,12 +1,11 @@
-
-
-import React from "react";
+import React, { useState } from "react";
 import "../css/LoginPage.css";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link, useLocation } from "react-router-dom";
 import profileIcon from "../assets/profile.jpg";
-import Cal from "./calendarMini";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import {
   faHome,
   faCalendarAlt,
@@ -15,15 +14,20 @@ import {
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
-const SideNavigation = () => {
+const HallSideNavigation = () => {
   const location = useLocation();
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date); 
+  };
 
   return (
     <Sidebar style={{ height: "650px", position: "relative" }}>
       <div
         style={{
           padding: "15px",
-          borderBottom: "1px solid #eee",
+          borderBottom: "2px solid #eee",
           display: "flex",
           alignItems: "center",
         }}
@@ -96,14 +100,32 @@ const SideNavigation = () => {
 
       <div
         style={{
-            marginTop:"-20px",
+          marginTop: "-20px",
           padding: "27px 100px 100px 27px",
           boxSizing: "border-box",
           width: "100%",
           overflow: "hidden",
         }}
       >
-        <Cal />
+        <div
+          style={{
+            padding: "4px",
+            boxSizing: "border-box",
+            width: "95%",
+            marginLeft : "-0.35rem",
+            // overflow: "hidden",
+          }}
+        >
+          <DatePicker
+
+            selected={selectedDate}
+            onChange={handleDateChange}
+            className="custom-calendar"
+            dateFormat="dd/MM/yyyy"
+            calendarClassName="custom-calendar"
+            popperProps={{ placement: "bottom" }}
+          />
+        </div>
       </div>
 
       {/* Logout Menu */}
@@ -118,7 +140,7 @@ const SideNavigation = () => {
         }}
         style={{
           position: "absolute",
-          bottom: "100px",
+          bottom: "80px",
           width: "100%",
         }}
       >
@@ -136,4 +158,4 @@ const SideNavigation = () => {
   );
 };
 
-export default SideNavigation;
+export default HallSideNavigation;
