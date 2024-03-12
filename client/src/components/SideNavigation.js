@@ -26,7 +26,7 @@ const SideNavigation = (props) => {
           borderBottom: "1px solid #eee",
           display: "flex",
           alignItems: "center",
-          backgroundColor: "white",
+          //backgroundColor: "white",
         }}
       >
         <img
