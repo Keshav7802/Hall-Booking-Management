@@ -94,12 +94,7 @@ const HallBooking = () => {
         <div style={sidebarStyle}>
         <SideNavigation />
         </div>
-        {/* Left Column - Halls Available for Booking */}
-<<<<<<< HEAD
-        <div style={contentStyle}>
-=======
         <div style={{ ...columnStyle , overflow:"auto"}}>
->>>>>>> 39e720e3f691f1b7b6a4c3d71ce65db32353d54c
           <div
             style={{
               ...textShadow,
@@ -112,7 +107,7 @@ const HallBooking = () => {
             HALL DETAILS
           </div>
 
-          {/* Department selection dropdown */}
+       
           <div className="my-3">
             <label className="mx-3" htmlFor="departmentDropdown">
               Department:{" "}
