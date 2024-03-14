@@ -9,8 +9,8 @@ import userRoutes from './routes/users.js';
 const app = express();
 dotenv.config();
 
-app.use(bodyParser.urlencoded({extended:true}));
-
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 app.use(cors());
 app.use('/user', userRoutes); 
 
