@@ -1,7 +1,7 @@
 # Hall-Booking-Management-Backend
 # API Documentation
 
-This is a document for various API's being developed.
+This is a document for various API's being developed
 
 ## Base URL
 
