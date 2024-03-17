@@ -62,7 +62,7 @@ const HomePage = () => {
                 textDecoration: "underline",
                 cursor: "pointer",
               }}
-              to="/calendar"
+              to="/Availability"
             >
               Click here
             </Link>

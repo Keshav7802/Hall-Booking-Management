@@ -5,6 +5,7 @@ import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import '../css/Calendar.css';
+import events from './Events'
 
 const customLocalizer = momentLocalizer(moment, {
   formats: {
@@ -30,10 +31,7 @@ const CustomDay = ({ date }) => {
 };
 
 const CalendarMain = ({ selectedDate }) => {
-  const events = [
-    { title: 'Event 1', start: new Date(), column: 1 },
-    { title: 'Event 2', start: new Date(), column: 3 },
-  ];
+
 
   return (
     <div className="app" style={{ height: '1200px' }}>
@@ -41,11 +39,11 @@ const CalendarMain = ({ selectedDate }) => {
         localizer={customLocalizer}
         events={events}
         toolbar={true}
-        components={{
-          day: {
-            event: CustomDay,
-          },
-        }}
+        // components={{
+        //   day: {
+        //     event: CustomDay,
+        //   },
+        // }}
         views={{
           day: true,
           week: true,

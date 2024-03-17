@@ -200,6 +200,7 @@ const HallBookingForm = () => {
                 height: "200px",
                 border: "0.5px solid #212529",
                 width: "400px",
+                padding: "0.9rem"
               }} // Allow textarea to grow dynamically
             />
           </div>

@@ -13,7 +13,7 @@ const HallInfo = () => {
   const Name = "Hello";
   const Department = " CSE";
   return (
-    <div style={{ display: "flex", height: "85vh" }}>
+    <div style={{ display: "flex", height: "85vh" , marginTop: "-2rem"}}>
       <SideNavigation />
       <div style={{ ...columnStyle }}>
         <div className="text-3xl font-semibold text-green-700 mb-5">{Name}</div>
@@ -25,7 +25,7 @@ const HallInfo = () => {
         <div className="text-justify">{Department}</div>
         <button
           type="button"
-          className="text-white bg-sky-500 hover:bg-sky-600 w-36 h-10 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm my-5"
+          className="text-black bg-sky-500 hover:bg-sky-600 w-36 h-10 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm my-5"
         >
           Book Hall
         </button>
