@@ -8,14 +8,15 @@ function LoginPage() {
   const [contain, setcontainer] = useState(false);
   const [loginError, setLoginError] = useState(true);
   const [signupError, setSignupError] = useState(false);
+  // const [selectedUserType, setSelectedUserType] = useState("");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const HandleName=(event)=>{
+  const HandleName = (event) => {
     setName(event.target.value);
-  }
+  };
   const HandlePassword = (event) => {
     setPassword(event.target.value);
   };
@@ -48,7 +49,7 @@ function LoginPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({email, password }),
+        body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
       if (data.status === 200) {
@@ -81,7 +82,12 @@ function LoginPage() {
 
             <div className="input-container">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Name" value={name} onChange={HandleName} />
+              <input
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={HandleName}
+              />
             </div>
             <div className="input-container">
               <i className="fas fa-envelope"></i>
@@ -110,6 +116,19 @@ function LoginPage() {
                 onChange={HandleConfirmPassword}
               />
             </div>
+            {signupError && (
+              <p className="error-message">Passwords do not match</p>
+            )}
+            <div className="input-container">
+              <select className="user-type-dropdown">
+                <option value="">Select User Type</option>
+                <option value="user">Student</option>
+                <option value="admin">Phd Student</option>
+                <option value="admin">Professor</option>
+              </select>
+              <i className="fas fa-user"></i>
+            </div>
+
             <button onClick={HandleRegister}>Register</button>
           </form>
         </div>
