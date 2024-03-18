@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 
-const bookingSchema = mongoose.Schema({
-  //bookingID: Number,
-  userID: String,
-  eventID: String,
+const bookingSchema = new Schema({
+  bookingID: Number,
+  userID: Number,
+  eventID: Number,
   bookingStatus: { type: String, enum: ['Pending', 'Approved', 'Rejected', 'Updated'] },
   bookingDateTime: Date,
   approvalDateTime: Date,
