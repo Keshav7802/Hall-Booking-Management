@@ -10,8 +10,9 @@ import HallAvailability from "./components/HallAvailability.js";
 import BookingStatus from "./components/BookingStatus.js";
 import HallBooking from "./components/HallBooking.js";
 import HallBookingForm from "./components/HallBookingForm.js";
-import Calender from "./components/Calender.js";
+import Calendar from "./components/Calendar.js";
 import HallInfo from "./components/HallInfo.js";
+import AdminPendingRequests from "./components/admin_dashboard_pending_requests.js"
 
 function App() {
   return (
@@ -28,7 +29,8 @@ function App() {
           <Route path="/HallBook" element={<HallBooking />} />
           <Route path="/HallBookForm" element={<HallBookingForm />} />
           <Route path="/HallDetails" element={<HallInfo/>}/>
-          <Route path="/Cal" element={<Calender />} />
+          <Route path="/Cal" element={<Calendar />} />
+          <Route path="/AdminPendingRequests" element={<AdminPendingRequests />} />
         </Routes>
         <Footer />
       </div>

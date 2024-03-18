@@ -1,8 +1,7 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
 
 
 .App {
@@ -43,4 +42,5 @@
     transform: rotate(360deg);
   }
 }
+
 

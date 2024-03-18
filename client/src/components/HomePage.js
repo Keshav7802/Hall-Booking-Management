@@ -36,7 +36,8 @@ const HomePage = () => {
       <div
         style={{
           display: "flex",
-          height:"85vh"
+          height:"85vh",
+          marginTop: "-2rem"
         }}
       >
         <SideNavigation />

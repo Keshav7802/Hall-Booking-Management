@@ -30,7 +30,7 @@ const HallBookingForm = () => {
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex" , marginTop : "-2rem"}}>
       <SideNavigation />
       <div style={{ ...columnStyle }}>
         <h1
@@ -225,5 +225,6 @@ const HallBookingForm = () => {
     </div>
   );
 };
+
 
 export default HallBookingForm;

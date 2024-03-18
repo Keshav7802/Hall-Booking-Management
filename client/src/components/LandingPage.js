@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-
 import React from "react";
 import "../css/LoginPage.css";
 
@@ -9,33 +8,27 @@ var textShadow = {
 
 const columnStyle = {
   width: "50%",
-  //   marginTop : '1rem',
-  //   marginLeft : '5rem',
-  // padding: '5rem',
   padding: "2rem 0rem 3rem 5rem",
   boxSizing: "border-box",
-  // height: '100vh', // Set a height for full-height columns
-  backgroundColor: "#f0f0f0", // Same background color for both columns
+  backgroundColor: "#f0f0f0",
 };
 
 const columnStyle2 = {
   width: "50%",
   padding: "5rem",
   boxSizing: "border-box",
-  // height: '100vh', // Set a height for full-height columns
-  backgroundColor: "#f0f0f0", // Same background color for both columns
+  backgroundColor: "#f0f0f0",
 };
-
 const boxStyle = {
-  backgroundColor: "#212529", // Sky blue background for the box
+  backgroundColor: "#87CEEB",
   padding: "1.5rem",
-  border: "4px #000", // Border for the box
+  border: "4px solid #000", // Border for the box
   borderRadius: "8px", // Border radius for the box
 };
 
-const HomePage = () => {
+const LandingPage = () => {
   return (
-    <div style={{ display: "flex", height: "85vh" }}>
+    <div style={{ display: "flex", marginTop: "-2rem" }}>
       {/* Left Column - Halls Available for Booking */}
       <div style={{ ...columnStyle }}>
         <div
@@ -60,16 +53,16 @@ const HomePage = () => {
           HALLS AVAILABLE FOR BOOKING
         </div>
         <div style={{ marginTop: "2rem" }}>
-          <Link
+          <a
             style={{
               color: "#0066cc",
               textDecoration: "underline",
               cursor: "pointer",
             }}
-            to="/login"
+            href="/login"
           >
             Click here
-          </Link>
+          </a>
           <span> to check availability of halls</span>
         </div>
         <ol
@@ -99,7 +92,7 @@ const HomePage = () => {
         <div style={{ ...boxStyle }}>
           <div
             style={{
-              color: "white",
+              color: "#333",
               fontWeight: "bold",
               fontSize: "1.6rem",
               marginBottom: "1rem",
@@ -107,13 +100,7 @@ const HomePage = () => {
           >
             STEPS TO BOOK A HALL
           </div>
-          <ul style={{ listStyleType: "disc", marginLeft: "1.5rem",color:"white" }}>
-            {/* <li>              <a
-                className="text-blue-600 hover:underline hover:cursor-pointer"
-                href="/login"
-              >
-                click here
-              </a>{" "} */}
+          <ul style={{ listStyleType: "disc", marginLeft: "1.5rem" }}>
             <li>Click on Login/SignUp Button to Login in your Account</li>
             <li>
               Check the calendar for availability of the halls on specific dates
@@ -127,21 +114,16 @@ const HomePage = () => {
               Meanwhile the status of your record can be tracked from your
               dashboard
             </li>
-            {/* List of steps to book a hall */}
-            {/* ... */}
           </ul>
         </div>
-
         <Link
-          className="btn btn-dark row d-flex justify-content-center align-content-center "
+          className="btn btn-dark"
           to="/login"
           role="button"
-          style={{
-            marginTop: "4rem",
-          }}
+          style={{ marginTop: "4rem", marginLeft: "12.5rem" }}
         >
           <text className="mx-4 my-3" style={{ color: "white" }}>
-            <b>Login/SignUp</b>
+            <b>Login</b>
           </text>
         </Link>
       </div>
@@ -149,4 +131,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default LandingPage;
