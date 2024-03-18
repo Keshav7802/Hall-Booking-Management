@@ -1,35 +1,37 @@
 import { useEffect, useState } from "react";
+import AdminDashboardSidebar from "./admin_dashboard_sidebar";
+
 
 function AdminPendingRequests(props) {
   const [bookingData, setBookingData] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [refresh, setRefresh] = useState(true);
 
-//   //STUDENT ODA DETAILS
+  //STUDENT ODA DETAILS
   const userData = JSON.parse(localStorage.getItem("authToken"));
-//   //
+  //
 
   const bookingDate = new Date();
   bookingDate.setDate(bookingDate.getDate() - 1);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetch(
-        "https://au-hallbooking-backend.onrender.com/api/booking/adminBookings",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userData.token}`,
-          },
-        }
-      );
-      const hallData = await data.json();
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       const data = await fetch(
+//         "https://au-hallbooking-backend.onrender.com/api/booking/adminBookings",
+//         {
+//           method: "GET",
+//           headers: {
+//             "Content-Type": "application/json",
+//             Authorization: `Bearer ${userData.token}`,
+//           },
+//         }
+//       );
+//       const hallData = await data.json();
 
-      setBookingData(hallData);
-    };
-    fetchData();
-  }, [refresh]);
+//       setBookingData(hallData);
+//     };
+//     fetchData();
+//   }, [refresh]);
 
   const filteredBookings =
     selectedStatus === "all"
@@ -66,71 +68,73 @@ function AdminPendingRequests(props) {
   const timeOptions = { hour: "numeric", minute: "numeric" }; //TIME OPTIONS
 
   const handleReject = async (bookingId) => {
-    try {
-      const response = await fetch(
-        "https://au-hallbooking-backend.onrender.com/api/booking/updateBooking",
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userData.token}`,
-          },
-          body: JSON.stringify({
-            _id: bookingId,
-            Status: "rejected",
-          }),
-        }
-      );
+//     try {
+//       const response = await fetch(
+//         "https://au-hallbooking-backend.onrender.com/api/booking/updateBooking",
+//         {
+//           method: "PATCH",
+//           headers: {
+//             "Content-Type": "application/json",
+//             Authorization: `Bearer ${userData.token}`,
+//           },
+//           body: JSON.stringify({
+//             _id: bookingId,
+//             Status: "rejected",
+//           }),
+//         }
+//       );
 
-      if (response.ok) {
-        // Handle success
-        console.log("Booking rejected successfully");
-        setRefresh(refresh ? false : true);
-        // Add any additional logic or state updates as needed
-      } else {
-        // Handle error
-        console.error("Failed to reject booking");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+//       if (response.ok) {
+//         // Handle success
+//         console.log("Booking rejected successfully");
+//         setRefresh(refresh ? false : true);
+//         // Add any additional logic or state updates as needed
+//       } else {
+//         // Handle error
+//         console.error("Failed to reject booking");
+//       }
+//     } catch (error) {
+//       console.error("Error:", error);
+//     }
   };
 
   const handleApprove = async (bookingId) => {
-    try {
-      const response = await fetch(
-        "https://au-hallbooking-backend.onrender.com/api/booking/updateBooking",
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userData.token}`,
-          },
-          body: JSON.stringify({
-            _id: bookingId,
-            Status: "approved",
-          }),
-        }
-      );
-      console.log(response);
-      if (response.ok) {
-        // Handle success
-        const data = await response.json();
-        console.log(data);
-        console.log("Booking Approved successfully");
-        // Add any additional logic or state updates as needed
-      } else {
-        // Handle error
-        console.error("Failed to reject booking");
-      }
+//     try {
+//       const response = await fetch(
+//         "https://au-hallbooking-backend.onrender.com/api/booking/updateBooking",
+//         {
+//           method: "PATCH",
+//           headers: {
+//             "Content-Type": "application/json",
+//             Authorization: `Bearer ${userData.token}`,
+//           },
+//           body: JSON.stringify({
+//             _id: bookingId,
+//             Status: "approved",
+//           }),
+//         }
+//       );
+//       console.log(response);
+//       if (response.ok) {
+//         // Handle success
+//         const data = await response.json();
+//         console.log(data);
+//         console.log("Booking Approved successfully");
+//         // Add any additional logic or state updates as needed
+//       } else {
+//         // Handle error
+//         console.error("Failed to reject booking");
+//       }
 
-      setRefresh(refresh ? false : true);
-    } catch (error) {
-      console.error("Error:", error);
-    }
+//       setRefresh(refresh ? false : true);
+//     } catch (error) {
+//       console.error("Error:", error);
+//     }
   };
 
   return (
+    <div className="flex flex-col md:flex-row">
+         <AdminDashboardSidebar data={props.data} />
     <div className="bg-neutral-100 w-full">
       <nav className="bg-white border-gray-200">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -138,7 +142,7 @@ function AdminPendingRequests(props) {
             <span className="self-center mr-4 text-md md:text-2xl font-bold whitespace-nowrap">
               REQUESTS :{" "}
             </span>
-            <ul className="font-medium mt-2 sm:mt-0 flex flex-wrap rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-white">
+            <ul className="font-medium mt-2 sm:mt-0 flex flex-wrap rounded-lg bg-white md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-white">
               <li className="flex items-center mr-2 text-sm sm:text-md">
                 <div className="h-4 w-6 bg-[#fe3233] mr-2"></div>
                 <div>Rejected</div>
@@ -225,6 +229,7 @@ function AdminPendingRequests(props) {
           ))}
         </ul>
       </div>
+    </div>
     </div>
   );
 }
