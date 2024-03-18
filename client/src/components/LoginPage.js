@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import CaptchaImage from "./CaptchaImage";
 import "../css/LoginPage.css";
 import { Link } from "react-router-dom";
@@ -42,15 +44,18 @@ function LoginPage() {
         // Add logic to navigate to the authenticated section or perform other actions
       } else {
         setLoginError(true);
+        toast.error("Incorrect email or password");
       }
     } catch (error) {
       console.error("Error during login:", error);
       setLoginError(true);
+      toast.error("An error occurred during login");
     }
   };
 
   return (
     <>
+    <ToastContainer />
       <div className={`container ${contain ? "active" : ""}`} id="container" style={{marginBottom : "4rem", marginTop : "4rem"}}>
         <div className="form-container sign-up">
           <form>
