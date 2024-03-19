@@ -17,7 +17,19 @@ export const createHall = async (req, res) => {
 // delete booking
 export const deleteHall = async (req, res) => {
     try {
-      const deleteHall = await halls.findByIdAndDelete(req.params.id);
+
+        // const deleteHall = await halls.findByIdAndDelete(req.params.id);
+        // res.status(200).json("Object has been deleted");
+
+        const {hallName, departmentBlock } = req.body; 
+        const hall = await halls.findOne({ hallName, departmentBlock }); 
+
+        if (!hall) {
+            return res.status(404).json({ message: "Hall not found" });
+        }
+
+        const deleteHall = await halls.findByIdAndDelete(hall.hallID);
+
       res.status(200).json("Object has been deleted");
     } catch (err) {
       res.status(400).json({
@@ -30,9 +42,17 @@ export const deleteHall = async (req, res) => {
 // get hall by id
 export const getHall = async (req, res) => {
     try {
+        // const {hallName, departmentBlock } = req.body; 
+        // const hall = await halls.findOne({ hallName, departmentBlock }); 
+
+        // if (!hall) {
+        //     return res.status(404).json({ message: "Hall not found" });
+        // }
+
         const { Hall_ID } = req.params;
         if (!Hall_ID) throw error("No Hall Id found");
         const hall = await halls.find(Hall_ID)
+
         res.status(200).json(hall)
     } catch (err) {
         res.status(400).json({
