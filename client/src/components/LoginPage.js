@@ -10,7 +10,7 @@ function LoginPage() {
   const [signupError, setSignupError] = useState(false);
   // const [selectedUserType, setSelectedUserType] = useState("");
 
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -128,7 +128,6 @@ function LoginPage() {
               </select>
               <i className="fas fa-user"></i>
             </div>
-
             <button onClick={HandleRegister}>Register</button>
           </form>
         </div>
