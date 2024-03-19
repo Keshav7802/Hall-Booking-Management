@@ -8,6 +8,7 @@ import userRoutes from './routes/users.js';
 import bookingRoutes from './routes/booking.js';
 import clubRoutes from './routes/club.js';
 import eventRoutes from './routes/event.js';
+import membershipsRoutes from "./routes/membership.js"
 
 const app = express();
 dotenv.config();
@@ -20,6 +21,7 @@ app.use('/user', userRoutes);
 app.use('/booking', bookingRoutes);
 app.use('/club', clubRoutes);
 app.use('/event', eventRoutes);
+app.use('/memberships', membershipsRoutes);
 
 app.get('/',(req,res)=>{
     res.send('Hello To Hall Booking API');
