@@ -1,31 +1,35 @@
 import React, { useState } from "react";
-import CaptchaImage from "./CaptchaImage";
 import "../css/LoginPage.css";
 import { Link } from "react-router-dom";
 function LoginPage() {
   const [contain, setcontainer] = useState(false);
-  const [loginError, setLoginError] = useState(false);
+  const [loginError, setLoginError] = useState(true);
   const [signupError, setSignupError] = useState(false);
 
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-
+  const HandlePassword = (event) => {
+    setPassword(event.target.value);
+  };
+  const HandleConfirmPassword = (event) => {
+    setConfirmPassword(event.target.value);
+  };
   const HandleRegister = () => {
     if (password !== confirmPassword) {
-      // Passwords don't match, display an error message or take appropriate action
       console.log("Passwords do not match");
       setSignupError(true);
-      return;
     }
-  
-    // Continue with registration logic
+  };
+  const HandleRegister2 = () => {
     setcontainer(true);
   };
-  
+  const HandleLogin2 = () => {
+    setcontainer(false);
+  };
 
-    const HandleLogin = async () => {
+  const HandleLogin = async () => {
     try {
       // Replace the following with actual API endpoint and authentication logic
       const response = await fetch("/api/login", {
@@ -51,11 +55,14 @@ function LoginPage() {
 
   return (
     <>
-      <div className={`container ${contain ? "active" : ""}`} id="container" style={{marginBottom : "4rem", marginTop : "4rem"}}>
+      <div
+        className={`container ${contain ? "active" : ""}`}
+        id="container"
+        style={{ marginBottom: "4rem", marginTop: "4rem" }}
+      >
         <div className="form-container sign-up">
           <form>
             <h1>Registration</h1>
-
 
             <div className="input-container">
               <i className="fas fa-user"></i>
@@ -67,28 +74,31 @@ function LoginPage() {
             </div>
             <div className="input-container">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={HandlePassword}
+              />
             </div>
             <div className="input-container">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Confirm Password" />
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={HandleConfirmPassword}
+              />
             </div>
-            {signupError && <p className="error-message">Passwords do not match</p>}
-
-            {/* <CaptchaImage />
-            <div className="input-container">
-            <i className="fas fa-refresh"></i>
-              <input type="text" placeholder="Enter the above code" />
-            </div> */}
-
-            <button>Register</button>
+            {signupError && (
+              <p className="error-message">Passwords do not match</p>
+            )}
+            <button onClick={HandleRegister}>Register</button>
           </form>
         </div>
         <div className="form-container sign-in">
           <form>
             <h1>Login</h1>
-            {loginError && <p className="error-message">Incorrect email or password</p>}
-
             <div className="input-container">
               <i className="fas fa-envelope"></i>
               <input type="email" placeholder="Email" />
@@ -98,18 +108,17 @@ function LoginPage() {
               <input type="password" placeholder="Password" />
             </div>
 
-            <div className="input-container">
-              <span htmlFor="captcha"> </span>
-            </div>
-            <CaptchaImage />
-            <div className="input-container">
-              <i className="fas fa-refresh"></i>
-              <input type="text" placeholder="Enter the above code" />
-            </div>
-
             <Link to="#">Forget Your Password?</Link>
-            <Link className="btn btn-dark" to="/home" role="button" style={{backgroundColor: " rgb(45,42,42)"}}>
-              <text className="mx-4 my-3" style={{color:"white"}}><b>Login</b></text>
+            <Link
+              className="btn btn-dark"
+              onClick={HandleLogin}
+              to={!loginError ? "/home" : "/login"}
+              role="button"
+              style={{ backgroundColor: " rgb(45,42,42)" }}
+            >
+              <text className="mx-4 my-3" style={{ color: "white" }}>
+                <b>Login</b>
+              </text>
             </Link>
           </form>
         </div>
@@ -141,7 +150,7 @@ function LoginPage() {
                   </li>
                 </ul>
               </div>
-              <button className="hidden" id="login" onClick={HandleLogin}>
+              <button className="hidden" id="login" onClick={HandleLogin2}>
                 Login
               </button>
             </div>
@@ -170,7 +179,11 @@ function LoginPage() {
                   </li>
                 </ul>
               </div>
-              <button className="hidden" id="register" onClick={HandleRegister}>
+              <button
+                className="hidden"
+                id="register"
+                onClick={HandleRegister2}
+              >
                 Register
               </button>
             </div>

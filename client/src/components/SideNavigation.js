@@ -1,11 +1,11 @@
-
-
-import React from "react";
+import React, { useState } from "react";
 import "../css/LoginPage.css";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link, useLocation } from "react-router-dom";
 import profileIcon from "../assets/profile.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import {
   faHome,
   faCalendarAlt,
@@ -13,20 +13,34 @@ import {
   faInfoCircle,
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import Calendar from "./Calendar";
 
 const SideNavigation = (props) => {
   const location = useLocation();
-
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
   return (
-    <Sidebar style={{ position:"static", zIndex: 0,overflow:"hidden" , height:"85vh"}}>
+    <>
+    <Sidebar
+      style={{
+        marginTop: "5px",
+        marginBottom: "5px",
+        position: "fixed",
+        top: "7vh",
+        left: 0,
+        width: "calc(10vw + 16px)",
+        height: "calc(100vh - 14vh)",
+        zIndex: 0,
+        overflow: "auto",
+      }}
+    >
       <div
         style={{
           padding: "15px",
           borderBottom: "1px solid #eee",
           display: "flex",
           alignItems: "center",
-          //backgroundColor: "white",
         }}
       >
         <img
@@ -94,7 +108,35 @@ const SideNavigation = (props) => {
           </MenuItem>
         </div>
       </Menu>
-      {props.calendar && <Calendar />}
+      {props.calendar && (
+        <>
+          <div
+            style={{
+              padding: "15px",
+              boxSizing: "border-box",
+            }}
+          >
+            <div
+              style={{
+                padding: "4px",
+                boxSizing: "border-box",
+                width: "95%",
+                marginLeft: "-0.35rem",
+                // overflow: "hidden",
+              }}
+            >
+              <DatePicker
+                selected={selectedDate}
+                onChange={handleDateChange}
+                className="custom-calendar"
+                dateFormat="dd/MM/yyyy"
+                calendarClassName="custom-calendar"
+                popperProps={{ placement: "bottom" }}
+              />
+            </div>
+          </div>
+        </>
+      )}
       {/* Logout Menu */}
       <Menu
         menuItemStyles={{
@@ -122,6 +164,7 @@ const SideNavigation = (props) => {
         </div>
       </Menu>
     </Sidebar>
+    </>
   );
 };
 
