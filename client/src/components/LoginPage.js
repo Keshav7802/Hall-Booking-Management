@@ -6,7 +6,7 @@ import "../css/LoginPage.css";
 import { Link } from "react-router-dom";
 function LoginPage() {
   const [contain, setcontainer] = useState(false);
-  const [loginError, setLoginError] = useState(false);
+  const [loginError, setLoginError] = useState(true);
   const [signupError, setSignupError] = useState(false);
 
   const [email, setEmail] = useState("");
@@ -19,13 +19,23 @@ function LoginPage() {
       // Passwords don't match, display an error message or take appropriate action
       console.log("Passwords do not match");
       setSignupError(true);
+      toast.error("Password do not match");
       return;
     }
+
+
+    // Continue with registration logic
+  };
+
+  const HandleRegister2 = () => {
+   
   
     // Continue with registration logic
     setcontainer(true);
   };
-  
+  const HandleLogin2 = () => {
+    setcontainer(false);
+  }
 
     const HandleLogin = async () => {
     try {
@@ -78,7 +88,7 @@ function LoginPage() {
               <i className="fas fa-lock"></i>
               <input type="password" placeholder="Confirm Password" />
             </div>
-            {signupError && <p className="error-message">Passwords do not match</p>}
+            {/* {signupError && <p className="error-message">Passwords do not match</p>} */}
 
             {/* <CaptchaImage />
             <div className="input-container">
@@ -86,13 +96,13 @@ function LoginPage() {
               <input type="text" placeholder="Enter the above code" />
             </div> */}
 
-            <button>Register</button>
+            <button onClick={HandleRegister}>Register</button>
           </form>
         </div>
         <div className="form-container sign-in">
           <form>
-            <h1>Login</h1>
-            {loginError && <p className="error-message">Incorrect email or password</p>}
+            <h2>Login</h2>
+            {/* {loginError && <p className="error-message">Incorrect email or password</p>} */}
 
             <div className="input-container">
               <i className="fas fa-envelope"></i>
@@ -103,17 +113,17 @@ function LoginPage() {
               <input type="password" placeholder="Password" />
             </div>
 
-            <div className="input-container">
+            {/* <div className="input-container">
               <span htmlFor="captcha"> </span>
-            </div>
-            <CaptchaImage />
-            <div className="input-container">
+            </div> */}
+            {/* <CaptchaImage /> */}
+            {/* <div className="input-container">
               <i className="fas fa-refresh"></i>
               <input type="text" placeholder="Enter the above code" />
-            </div>
+            </div> */}
 
             <Link to="#">Forget Your Password?</Link>
-            <Link className="btn btn-dark" to="/home" role="button" style={{backgroundColor: " rgb(45,42,42)"}}>
+            <Link className="btn btn-dark" onClick={HandleLogin}  to={!loginError? "/home" : "/login"} role="button" style={{backgroundColor: " rgb(45,42,42)"}}>
               <text className="mx-4 my-3" style={{color:"white"}}><b>Login</b></text>
             </Link>
           </form>
@@ -146,7 +156,7 @@ function LoginPage() {
                   </li>
                 </ul>
               </div>
-              <button className="hidden" id="login" onClick={HandleLogin}>
+              <button className="hidden" id="login" onClick={HandleLogin2}>
                 Login
               </button>
             </div>
@@ -175,7 +185,7 @@ function LoginPage() {
                   </li>
                 </ul>
               </div>
-              <button className="hidden" id="register" onClick={HandleRegister}>
+              <button className="hidden" id="register" onClick={HandleRegister2} >
                 Register
               </button>
             </div>
