@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const clubSchema = new Schema({
+const clubSchema = mongoose.Schema({
   clubID: Number,
   clubName: String,
   description: String,
