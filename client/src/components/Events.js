@@ -62,15 +62,15 @@ const events =  [
   },
 
   {
-    'title': 'DTS STARTS',
-    'start': new Date(2024, 2, 13, 0, 0, 0),
-    'end': new Date(2024, 2, 20, 0, 0, 0)
+    'title': 'DTS 1',
+    'start': new Date(2024, 2, 13, 9, 0, 0),
+    'end': new Date(2024, 2, 13, 1, 0, 0)
   },
 
   {
-    'title': 'DTS ENDS',
-    'start': new Date(2016, 10, 6, 0, 0, 0),
-    'end': new Date(2016, 10, 13, 0, 0, 0)
+    'title': 'DTS 2',
+    'start': new Date(2024, 2, 14, 3, 0, 0),
+    'end': new Date(2024, 2, 14, 8, 0, 0)
   },
 
   {
