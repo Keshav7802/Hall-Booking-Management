@@ -27,8 +27,9 @@ export const signin = async(req,res) => {
     }
 }
 
-export const signup = async(req,res) => {
-    const {name, email, password, confirmPassword, userType} = req.body; // depends on registration form...
+export const signup = async (req, res) => {
+    const { name, email, password, confirmPassword, userType } = req.body; // depends on registration form...
+
     try {
         const existingUser = await UserModel.findOne({email});
         if(existingUser) return res.status(400).json({message:"Email Already Has An Account. Kindly Sign In!"});
