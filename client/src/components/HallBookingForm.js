@@ -23,7 +23,7 @@ const HallBookingForm = () => {
   const [timeFrom, setTimeFrom] = useState("");
   const [timeTo, setTimeTo] = useState("");
   const [reason, setReason] = useState("");
-
+  const [eventName, setEventName] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
@@ -44,6 +44,25 @@ const HallBookingForm = () => {
           Fill the following details and click submit to book the hall
         </h1>
         <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+
+          
+        <div className="form-group" style={{ marginBottom: "1rem" }}>
+  <label
+    htmlFor="eventName"
+    style={{ display: "inline-block", width: "200px" }}
+  >
+    <strong>EVENT NAME :</strong>
+  </label>
+  <input
+    type="text"
+    id="eventName"
+    value={eventName} // Assuming eventName is a state variable
+    onChange={(e) => setEventName(e.target.value)} // Assuming setEventName is a function to update the eventName state
+    style={{ ...placeholderStyle }} // PlaceholderStyle is assumed to be defined elsewhere
+  />
+</div>
+  
+      
           <div className="form-group" style={{ marginBottom: "1rem" }}>
             <label
               htmlFor="department"
