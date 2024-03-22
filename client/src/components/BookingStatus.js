@@ -5,6 +5,68 @@ import "../css/LoginPage.css";
 import { useEffect, useState } from "react";
 import { usePDF } from "react-to-pdf";
 
+const containerStyle = {
+  display: "flex",
+  marginTop: "-2em",
+};
+
+const sidebarStyle = {
+  position: "fixed",
+  backgroundColor: "#f0f0f0",
+  width: "10%",
+};
+
+const contentStyle = {
+  display: "flex",
+  flexDirection: "column",
+  marginLeft: "250px",
+  width: "90%",
+  boxSizing: "border-box",
+  padding: "2rem 1rem 0rem 1rem",
+};
+
+const titleStyle = {
+  fontSize: "22px",
+  fontWeight: "bold",
+  marginTop: "-1rem",
+  marginLeft: "1rem",
+};
+
+const headingsContainerStyle = {
+  display: "flex",
+  fontWeight: "600",
+  marginTop: "1rem",
+  marginLeft: "1rem",
+  flexWrap: "wrap",
+};
+
+const headingStyle = {
+  fontSize: "15px",
+  marginRight: "2rem", // Adjusted margin for spacing between headings
+};
+
+const squareBlockStyle = {
+  width: "15px",
+  height: "15px",
+  marginRight: "0.6rem",
+  marginTop: "0.27rem",
+};
+
+const blueSquare = {
+  ...squareBlockStyle,
+  backgroundColor: "blue",
+};
+
+const redSquare = {
+  ...squareBlockStyle,
+  backgroundColor: "red",
+};
+
+const greySquare = {
+  ...squareBlockStyle,
+  backgroundColor: "grey",
+};
+
 function StudentDashboardPendingRequests(props) {
   const [bookingData, setBookingData] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState("all");
@@ -89,9 +151,12 @@ function StudentDashboardPendingRequests(props) {
 
   console.log(filteredBookings);
   return (
-    <div className="flex flex-col md:flex-row">
-      <div style={{ display: "flex", height: "85vh", width: "100vw" ,marginTop: "-2rem" }}>
-        <SideNavigation data={props.data} />
+
+    <div style={containerStyle}>
+      <div style={sidebarStyle}>
+        <SideNavigation />
+      </div>
+      <div style={contentStyle}>
         <nav className="bg-white border-gray-200 w-full">
           <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <div className="flex items-center flex-wrap w-full">
