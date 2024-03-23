@@ -8,12 +8,19 @@ function LoginPage() {
   const [contain, setcontainer] = useState(false);
   const [loginError, setLoginError] = useState(true);
   const [signupError, setSignupError] = useState(false);
-  // const [selectedUserType, setSelectedUserType] = useState("");
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [user, setUser] = useState("");
 
+  const HandleLoginEmail = (event) => {
+    setLoginEmail(event.target.value);
+  };
+  const HandleLoginPasssword = (event) => {
+    setLoginPassword(event.target.value);
+  };
   const HandleName = (event) => {
     setName(event.target.value);
   };
@@ -49,7 +56,7 @@ function LoginPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({email, password }),
+        body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
       if (data.status === 200) {
@@ -116,17 +123,18 @@ function LoginPage() {
                 onChange={HandleConfirmPassword}
               />
             </div>
-            {signupError && (
-              <p className="error-message">Passwords do not match</p>
-            )}
             <div className="input-container">
-              <select className="user-type-dropdown">
-                <option value="">Select User Type</option>
-                <option value="user">Student</option>
-                <option value="admin">Phd Student</option>
-                <option value="admin">Professor</option>
-              </select>
-              <i className="fas fa-user"></i>
+                <select
+                  className="user-type-dropdown"
+                  onChange={(e) => {
+                    setUser(e.target.value);
+                  }}
+                >
+                  <option value={user}>Select User Type</option>
+                  <option value={user}>Student</option>
+                  <option value={user}>Phd Student</option>
+                  <option value={user}>Professor</option>
+                </select>
             </div>
             <button onClick={HandleRegister}>Register</button>
           </form>
@@ -136,11 +144,21 @@ function LoginPage() {
             <h1>Login</h1>
             <div className="input-container">
               <i className="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input
+                type="email"
+                placeholder="Email"
+                value={loginEmail}
+                onChange={HandleLoginEmail}
+              />
             </div>
             <div className="input-container">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input
+                type="password"
+                placeholder="Password"
+                value={loginPassword}
+                onChange={HandleLoginPasssword}
+              />
             </div>
 
             <Link to="#">Forget Your Password?</Link>
@@ -163,7 +181,7 @@ function LoginPage() {
               <div>
                 <h1>Instructions :</h1>
                 <br></br>
-                <ul>
+                <ul className="list-disc">
                   <li>
                     You need to register using your student email ID allocated
                     to you in order to be able to book halls.
@@ -181,11 +199,10 @@ function LoginPage() {
                     <Link to="mailto:aracademcis@iitrpr.ac.in">
                       aracademcis@iitrpr.ac.in
                     </Link>
-                    .
                   </li>
                 </ul>
               </div>
-              <button className="hidden" id="login" onClick={HandleLogin2}>
+              <button className="hid mt-5" id="login" onClick={HandleLogin2}>
                 Login
               </button>
             </div>
@@ -193,7 +210,7 @@ function LoginPage() {
               <div>
                 <h1>Instructions :</h1>
                 <br></br>
-                <ul>
+                <ul className="list-disc">
                   <li>
                     If you have already registered using your student email ID,
                     you can login and book halls.
@@ -215,7 +232,7 @@ function LoginPage() {
                 </ul>
               </div>
               <button
-                className="hidden"
+                className="hid mt-5"
                 id="register"
                 onClick={HandleRegister2}
               >
