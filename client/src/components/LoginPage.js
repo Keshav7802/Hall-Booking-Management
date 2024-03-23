@@ -8,6 +8,7 @@ function LoginPage() {
   const [contain, setcontainer] = useState(false);
   const [loginError, setLoginError] = useState(true);
   const [signupError, setSignupError] = useState(false);
+  // const [selectedUserType, setSelectedUserType] = useState("");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -90,6 +91,26 @@ function LoginPage() {
             </div>
             {/* {signupError && <p className="error-message">Passwords do not match</p>} */}
 
+              {/* Dropdown for selecting user type */}
+              {/* <div className="input-container">
+            <select className="user-type-dropdown">
+              <option value="">Select User Type</option>
+              <option value="user">Student</option>
+              <option value="admin">Admin</option>
+            </select>
+            <i className="fas fa-user"></i>
+          </div> */}
+         <div className="input-container">
+  <select className="user-type-dropdown">
+    <option value="">Select User Type</option>
+    <option value="user">Student</option>
+    <option value="admin">Phd Student</option>
+    <option value="admin">Professor</option>
+  </select>
+  <i className="fas fa-user"></i>
+</div>
+
+          {/* 
             {/* <CaptchaImage />
             <div className="input-container">
             <i className="fas fa-refresh"></i>
