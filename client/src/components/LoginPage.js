@@ -4,21 +4,29 @@ import "react-toastify/dist/ReactToastify.css";
 import "../css/LoginPage.css";
 import { Link } from "react-router-dom";
 function LoginPage() {
+  const [name, setName] = useState("");
   const [contain, setcontainer] = useState(false);
   const [loginError, setLoginError] = useState(true);
   const [signupError, setSignupError] = useState(false);
 
-  // const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const HandleName=(event)=>{
+    setName(event.target.value);
+  }
   const HandlePassword = (event) => {
     setPassword(event.target.value);
   };
   const HandleConfirmPassword = (event) => {
     setConfirmPassword(event.target.value);
   };
-  const HandleRegister = () => {
+  const HandleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+  const HandleRegister = (e) => {
+    e.preventDefault();
     if (password !== confirmPassword) {
       console.log("Passwords do not match");
       setSignupError(true);
@@ -31,24 +39,26 @@ function LoginPage() {
     setcontainer(false);
   };
 
-  const HandleLogin = async () => {
+  const HandleLogin = async (e) => {
+    e.preventDefault();
     try {
       // Replace the following with actual API endpoint and authentication logic
-      const response = await fetch("/api/login", {
+      const response = await fetch("/user/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({email, password }),
       });
-
-      if (response.ok) {
+      const data = await response.json();
+      if (data.status === 200) {
         setLoginError(false);
         setcontainer(false);
+        toast.error(data.message);
         // Add logic to navigate to the authenticated section or perform other actions
       } else {
         setLoginError(true);
-        toast.error("Incorrect email or password");
+        toast.error(data.message);
       }
     } catch (error) {
       console.error("Error during login:", error);
@@ -59,19 +69,28 @@ function LoginPage() {
 
   return (
     <>
-    <ToastContainer />
-      <div className={`container ${contain ? "active" : ""}`} id="container" style={{marginBottom : "4rem", marginTop : "4rem"}}>
+      <ToastContainer />
+      <div
+        className={`container ${contain ? "active" : ""}`}
+        id="container"
+        style={{ marginBottom: "4rem", marginTop: "4rem" }}
+      >
         <div className="form-container sign-up">
           <form>
             <h1>Registration</h1>
 
             <div className="input-container">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Name" />
+              <input type="text" placeholder="Name" value={name} onChange={HandleName} />
             </div>
             <div className="input-container">
               <i className="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={HandleEmail}
+              />
             </div>
             <div className="input-container">
               <i className="fas fa-lock"></i>
@@ -91,9 +110,6 @@ function LoginPage() {
                 onChange={HandleConfirmPassword}
               />
             </div>
-            {signupError && (
-              <p className="error-message">Passwords do not match</p>
-            )}
             <button onClick={HandleRegister}>Register</button>
           </form>
         </div>
