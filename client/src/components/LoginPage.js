@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../css/LoginPage.css";
-import { Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 function LoginPage() {
   const [name, setName] = useState("");
   const [contain, setcontainer] = useState(false);
@@ -14,6 +14,7 @@ function LoginPage() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [user, setUser] = useState("");
+  const navigate = useNavigate();
 
   const HandleLoginEmail = (event) => {
     setLoginEmail(event.target.value);
@@ -35,6 +36,7 @@ function LoginPage() {
   };
   const HandleRegister = (e) => {
     e.preventDefault();
+
     if (password !== confirmPassword) {
       console.log("Passwords do not match");
       setSignupError(true);
@@ -50,20 +52,19 @@ function LoginPage() {
   const HandleLogin = async (e) => {
     e.preventDefault();
     try {
-      // Replace the following with actual API endpoint and authentication logic
-      const response = await fetch("/user/signin", {
+      const response = await fetch(`${process.env.REACT_APP_API}/user/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
       });
       const data = await response.json();
-      if (data.status === 200) {
+      if (data.ok) {
         setLoginError(false);
         setcontainer(false);
-        toast.error(data.message);
-        // Add logic to navigate to the authenticated section or perform other actions
+        toast.success(data.message);
+        navigate("/home");
       } else {
         setLoginError(true);
         toast.error(data.message);
@@ -77,7 +78,6 @@ function LoginPage() {
 
   return (
     <>
-      <ToastContainer />
       <div
         className={`container ${contain ? "active" : ""}`}
         id="container"
@@ -124,24 +124,26 @@ function LoginPage() {
               />
             </div>
             <div className="input-container">
-                <select
-                  className="user-type-dropdown"
-                  onChange={(e) => {
-                    setUser(e.target.value);
-                  }}
-                >
-                  <option value={user}>Select User Type</option>
-                  <option value={user}>Student</option>
-                  <option value={user}>Phd Student</option>
-                  <option value={user}>Professor</option>
-                </select>
+              <select
+                className="user-type-dropdown"
+                onChange={(e) => {
+                  setUser(e.target.value);
+                }}
+              >
+                <option value={user}>Select User Type</option>
+                <option value={user}>Student</option>
+                <option value={user}>Faculty</option>
+                <option value={user}>IT Staff</option>
+              </select>
             </div>
             <button onClick={HandleRegister}>Register</button>
           </form>
         </div>
         <div className="form-container sign-in">
           <form>
-            <h1>Login</h1>
+            <h1 className="mb-3">
+              <strong>Login</strong>
+            </h1>
             <div className="input-container">
               <i className="fas fa-envelope"></i>
               <input
@@ -227,7 +229,6 @@ function LoginPage() {
                     <Link to="mailto:aracademcis@iitrpr.ac.in">
                       aracademcis@iitrpr.ac.in
                     </Link>
-                    .
                   </li>
                 </ul>
               </div>

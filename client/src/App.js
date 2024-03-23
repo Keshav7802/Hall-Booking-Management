@@ -13,12 +13,14 @@ import HallBookingForm from "./components/HallBookingForm.js";
 import Calendar from "./components/Calendar.js";
 import HallInfo from "./components/HallInfo.js";
 import AdminPendingRequests from "./components/admin_dashboard_pending_requests.js"
+import {ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="flex flex-col min-h-screen">
         <Header />
+        <ToastContainer/>
         <Routes>
           <Route path="" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
