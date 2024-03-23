@@ -300,5 +300,32 @@
     margin-top: 10px; 
     border: 1px solid #ddd; 
   }
-  
 
+ /* Styling for user-type dropdown */
+.user-type-dropdown {
+    background-color: #eee; 
+    border: none; 
+    margin: 8px 0; 
+    padding:  10px 40px 10px 30px;
+    padding-right: 30px;
+    font-size: 13px; 
+    border-radius: 8px; 
+    width: 130.5%; 
+    outline: none; 
+    position: relative; 
+    left: -26px; 
+    display: flex;
+    align-items: center; 
+  }
+  
+ 
+.input-container .fas {
+    position: absolute;
+    top: 50%;
+    right: 10px; 
+    transform: translateY(-50%);
+    pointer-events: none;
+   
+  }
+
+  
