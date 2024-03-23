@@ -10,7 +10,7 @@ function LoginPage() {
   const [signupError, setSignupError] = useState(false);
   // const [selectedUserType, setSelectedUserType] = useState("");
 
-  // const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -49,7 +49,7 @@ function LoginPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({email, password }),
       });
       const data = await response.json();
       if (data.status === 200) {
