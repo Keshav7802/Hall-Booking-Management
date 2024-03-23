@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AdminDashboardSidebar from "./admin_dashboard_sidebar";
+import AdminSideNavigation from "./AdminSideNavigation";
 
 
 function AdminPendingRequests(props) {
@@ -133,8 +134,17 @@ function AdminPendingRequests(props) {
   };
 
   return (
-    <div className="flex flex-col md:flex-row">
-         <AdminDashboardSidebar data={props.data} />
+    // <div className="flex flex-col md:flex-row">
+    <div
+        style={{
+          display: "flex",
+          height:"85vh",
+          marginTop: "-2rem"
+        }}
+      >
+         {/* <AdminDashboardSidebar data={props.data} /> */}
+         
+          <AdminSideNavigation/>
     <div className="bg-neutral-100 w-full">
       <nav className="bg-white border-gray-200">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
