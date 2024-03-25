@@ -20,6 +20,13 @@
 
 /* sidebar.css */
 
+/* @media (max-width: 100000px) {
+    .toggle-btn10 {
+      display: block;
+    }
+  }
+   */
+
 .active {
     background-color: #13395e;
     color: #b6c8d9;

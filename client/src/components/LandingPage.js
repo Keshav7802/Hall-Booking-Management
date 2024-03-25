@@ -72,18 +72,17 @@ const LandingPage = () => {
             marginTop: "2rem",
           }}
         >
-          <li>Drawing Hall 48</li>
-          <li>Drawing Hall 49</li>
-          <li>Lecture Hall (No. 82, 83, 84, 85, 13)</li>
-          <li>Science and Humanities Room (Room No. -,-,-)</li>
-          <li>Knowledge Park (Room No. -,-,-)</li>
-          <li>Srinivasa Ramanujan Hall</li>
-          <li>Henry Moseley Hall</li>
-          <li>Ada Lovelace Auditorium</li>
-          <li>Turing Hall</li>
-          <li>Vivekanandha Auditorium</li>
-          <li>Tag Auditorium</li>
-          <li>Hall of Guines-68</li>
+            <li>Auditorium</li>
+            <li>CDPC HALL</li>
+            <li>SENATE HALL</li>
+            <li>EE-SH</li>
+            <li>ME-SH</li>
+            <li>CY-SH</li>
+            <li>M1 - M6</li>
+            <li>CS-LAB</li>
+            <li>EE-1</li>
+            <li>EE-2</li>
+            <li>ME-1</li>
         </ol>
       </div>
 
