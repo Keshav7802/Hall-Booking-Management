@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { toast} from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../css/LoginPage.css";
 import { NavLink, Link, useNavigate } from "react-router-dom";
@@ -34,12 +34,54 @@ function LoginPage() {
   const HandleEmail = (e) => {
     setEmail(e.target.value);
   };
-  const HandleRegister = (e) => {
+
+  const handleDropDown = (e) => {
+    setUser(e.target.value);
+  }
+
+  const HandleRegister = async (e) => {
     e.preventDefault();
 
+    console.log("This is selected user",user);
     if (password !== confirmPassword) {
       console.log("Passwords do not match");
+      toast.error("Passwords do not match");
       setSignupError(true);
+    } else {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API}/user/signup`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: name,
+              email: email,
+              password: password,
+              confirmPassword: confirmPassword,
+              userType: user,
+            }),
+          }
+        );
+        const data = await response.json();
+        console.log("The work is done");
+        if (data.ok) {
+          setSignupError(false);
+          setcontainer(false);
+          toast.success(data.message);
+          console.log("Work done succesffuly");
+          navigate("/login");
+        } else {
+          setSignupError(true);
+          toast.error(data.message);
+        }
+      } catch (error) {
+        console.error("Error during Signup:", error);
+        setLoginError(true);
+        toast.error("An error occurred during Signup");
+      }
     }
   };
   const HandleRegister2 = () => {
@@ -126,14 +168,13 @@ function LoginPage() {
             <div className="input-container">
               <select
                 className="user-type-dropdown"
-                onChange={(e) => {
-                  setUser(e.target.value);
-                }}
+                value={user}
+                onChange={handleDropDown}
               >
-                <option value={user}>Select User Type</option>
-                <option value={user}>Student</option>
-                <option value={user}>Faculty</option>
-                <option value={user}>IT Staff</option>
+                <option value="">Select User Type</option>
+                <option value="Student">Student</option>
+                <option value="Faculty">Faculty</option>
+                <option value="IT Staff">IT Staff</option>
               </select>
             </div>
             <button onClick={HandleRegister}>Register</button>
@@ -167,7 +208,6 @@ function LoginPage() {
             <Link
               className="btn btn-dark"
               onClick={HandleLogin}
-              to={!loginError ? "/home" : "/login"}
               role="button"
               style={{ backgroundColor: " rgb(45,42,42)" }}
             >

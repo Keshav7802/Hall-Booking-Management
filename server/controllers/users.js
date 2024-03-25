@@ -31,7 +31,12 @@ export const signin = async (req, res) => {
 
     res
       .status(200)
-      .json({ result: existingUser, token: token, message: "Login Succesful",ok:true });
+      .json({
+        result: existingUser,
+        token: token,
+        message: "Login Succesful",
+        ok: true,
+      });
   } catch (error) {
     res.status(500).json({ message: "Something Went Wrong" });
   }
@@ -45,7 +50,7 @@ export const signup = async (req, res) => {
     if (existingUser)
       return res
         .status(400)
-        .json({ message: "Email Already Has An Account. Kindly Sign In!" });
+        .json({ message: "Email Already Has An Account. Kindly Sign In!",ok:true });
 
     if (password != confirmPassword)
       return res.status(403).json({ message: "Passwords do not match!" });
@@ -63,7 +68,9 @@ export const signup = async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.status(201).json({ result, token });
+    res
+      .status(201)
+      .json({ result, token, ok: true, message: "Registration Successful" });
   } catch (error) {
     res.status(500).json({ message: "Something Went Wrong" });
     console.log("This is the error", error);
