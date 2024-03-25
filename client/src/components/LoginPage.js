@@ -1,136 +1,219 @@
 import React, { useState } from "react";
-import CaptchaImage from "./CaptchaImage";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../css/LoginPage.css";
-import { Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 function LoginPage() {
+  const [name, setName] = useState("");
   const [contain, setcontainer] = useState(false);
-  const [loginError, setLoginError] = useState(false);
+  const [loginError, setLoginError] = useState(true);
   const [signupError, setSignupError] = useState(false);
-  // const [selectedUserType, setSelectedUserType] = useState("");
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [user, setUser] = useState("");
+  const navigate = useNavigate();
 
+  const HandleLoginEmail = (event) => {
+    setLoginEmail(event.target.value);
+  };
+  const HandleLoginPasssword = (event) => {
+    setLoginPassword(event.target.value);
+  };
+  const HandleName = (event) => {
+    setName(event.target.value);
+  };
+  const HandlePassword = (event) => {
+    setPassword(event.target.value);
+  };
+  const HandleConfirmPassword = (event) => {
+    setConfirmPassword(event.target.value);
+  };
+  const HandleEmail = (e) => {
+    setEmail(e.target.value);
+  };
 
-  const HandleRegister = () => {
+  const handleDropDown = (e) => {
+    setUser(e.target.value);
+  }
+
+  const HandleRegister = async (e) => {
+    e.preventDefault();
+
+    console.log("This is selected user",user);
     if (password !== confirmPassword) {
-      // Passwords don't match, display an error message or take appropriate action
       console.log("Passwords do not match");
+      toast.error("Passwords do not match");
       setSignupError(true);
-      return;
+    } else {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API}/user/signup`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: name,
+              email: email,
+              password: password,
+              confirmPassword: confirmPassword,
+              userType: user,
+            }),
+          }
+        );
+        const data = await response.json();
+        console.log("The work is done");
+        if (data.ok) {
+          setSignupError(false);
+          setcontainer(false);
+          toast.success(data.message);
+          console.log("Work done succesffuly");
+          navigate("/login");
+        } else {
+          setSignupError(true);
+          toast.error(data.message);
+        }
+      } catch (error) {
+        console.error("Error during Signup:", error);
+        setLoginError(true);
+        toast.error("An error occurred during Signup");
+      }
     }
-  
-    // Continue with registration logic
+  };
+  const HandleRegister2 = () => {
     setcontainer(true);
   };
-  
+  const HandleLogin2 = () => {
+    setcontainer(false);
+  };
 
-    const HandleLogin = async () => {
+  const HandleLogin = async (e) => {
+    e.preventDefault();
     try {
-      // Replace the following with actual API endpoint and authentication logic
-      const response = await fetch("/api/login", {
+      const response = await fetch(`${process.env.REACT_APP_API}/user/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
       });
-
-      if (response.ok) {
+      const data = await response.json();
+      if (data.ok) {
         setLoginError(false);
         setcontainer(false);
-        // Add logic to navigate to the authenticated section or perform other actions
+        toast.success(data.message);
+        navigate("/home");
       } else {
         setLoginError(true);
+        toast.error(data.message);
       }
     } catch (error) {
       console.error("Error during login:", error);
       setLoginError(true);
+      toast.error("An error occurred during login");
     }
   };
 
   return (
     <>
-      <div className={`container ${contain ? "active" : ""}`} id="container" style={{marginBottom : "4rem", marginTop : "4rem"}}>
+      <div
+        className={`container ${contain ? "active" : ""}`}
+        id="container"
+        style={{ marginBottom: "4rem", marginTop: "4rem" }}
+      >
         <div className="form-container sign-up">
           <form>
             <h1>Registration</h1>
 
-
             <div className="input-container">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Name" />
+              <input
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={HandleName}
+              />
             </div>
             <div className="input-container">
               <i className="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={HandleEmail}
+              />
             </div>
             <div className="input-container">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={HandlePassword}
+              />
             </div>
             <div className="input-container">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Confirm Password" />
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={HandleConfirmPassword}
+              />
             </div>
-            {signupError && <p className="error-message">Passwords do not match</p>}
-
-              {/* Dropdown for selecting user type */}
-              {/* <div className="input-container">
-            <select className="user-type-dropdown">
-              <option value="">Select User Type</option>
-              <option value="user">Student</option>
-              <option value="admin">Admin</option>
-            </select>
-            <i className="fas fa-user"></i>
-          </div> */}
-         <div className="input-container">
-  <select className="user-type-dropdown">
-    <option value="">Select User Type</option>
-    <option value="user">Student</option>
-    <option value="admin">Phd Student</option>
-    <option value="admin">Professor</option>
-  </select>
-  <i className="fas fa-user"></i>
-</div>
-
-          {/* 
-            {/* <CaptchaImage />
             <div className="input-container">
-            <i className="fas fa-refresh"></i>
-              <input type="text" placeholder="Enter the above code" />
-            </div> */}
-
-            <button>Register</button>
+              <select
+                className="user-type-dropdown"
+                value={user}
+                onChange={handleDropDown}
+              >
+                <option value="">Select User Type</option>
+                <option value="Student">Student</option>
+                <option value="Faculty">Faculty</option>
+                <option value="IT Staff">IT Staff</option>
+              </select>
+            </div>
+            <button onClick={HandleRegister}>Register</button>
           </form>
         </div>
         <div className="form-container sign-in">
           <form>
-            <h1>Login</h1>
-            {loginError && <p className="error-message">Incorrect email or password</p>}
-
+            <h1 className="mb-3">
+              <strong>Login</strong>
+            </h1>
             <div className="input-container">
               <i className="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input
+                type="email"
+                placeholder="Email"
+                value={loginEmail}
+                onChange={HandleLoginEmail}
+              />
             </div>
             <div className="input-container">
               <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
-            </div>
-
-            <div className="input-container">
-              <span htmlFor="captcha"> </span>
-            </div>
-            <CaptchaImage />
-            <div className="input-container">
-              <i className="fas fa-refresh"></i>
-              <input type="text" placeholder="Enter the above code" />
+              <input
+                type="password"
+                placeholder="Password"
+                value={loginPassword}
+                onChange={HandleLoginPasssword}
+              />
             </div>
 
             <Link to="#">Forget Your Password?</Link>
-            <Link className="btn btn-dark" to="/home" role="button" style={{backgroundColor: " rgb(45,42,42)"}}>
-              <text className="mx-4 my-3" style={{color:"white"}}><b>Login</b></text>
+            <Link
+              className="btn btn-dark"
+              onClick={HandleLogin}
+              role="button"
+              style={{ backgroundColor: " rgb(45,42,42)" }}
+            >
+              <text className="mx-4 my-3" style={{ color: "white" }}>
+                <b>Login</b>
+              </text>
             </Link>
           </form>
         </div>
@@ -140,7 +223,7 @@ function LoginPage() {
               <div>
                 <h1>Instructions :</h1>
                 <br></br>
-                <ul>
+                <ul className="list-disc">
                   <li>
                     You need to register using your student email ID allocated
                     to you in order to be able to book halls.
@@ -158,11 +241,10 @@ function LoginPage() {
                     <Link to="mailto:aracademcis@iitrpr.ac.in">
                       aracademcis@iitrpr.ac.in
                     </Link>
-                    .
                   </li>
                 </ul>
               </div>
-              <button className="hidden" id="login" onClick={HandleLogin}>
+              <button className="hid mt-5" id="login" onClick={HandleLogin2}>
                 Login
               </button>
             </div>
@@ -170,7 +252,7 @@ function LoginPage() {
               <div>
                 <h1>Instructions :</h1>
                 <br></br>
-                <ul>
+                <ul className="list-disc">
                   <li>
                     If you have already registered using your student email ID,
                     you can login and book halls.
@@ -187,11 +269,14 @@ function LoginPage() {
                     <Link to="mailto:aracademcis@iitrpr.ac.in">
                       aracademcis@iitrpr.ac.in
                     </Link>
-                    .
                   </li>
                 </ul>
               </div>
-              <button className="hidden" id="register" onClick={HandleRegister}>
+              <button
+                className="hid mt-5"
+                id="register"
+                onClick={HandleRegister2}
+              >
                 Register
               </button>
             </div>
