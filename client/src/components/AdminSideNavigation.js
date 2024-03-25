@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+
+
+import React from "react";
 import "../css/LoginPage.css";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link, useLocation } from "react-router-dom";
 import profileIcon from "../assets/profile.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import {
   faHome,
   faCalendarAlt,
@@ -13,23 +13,20 @@ import {
   faInfoCircle,
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import Calendar from "./Calendar";
 
-const HallSideNavigation = () => {
+const AdminSideNavigation = (props) => {
   const location = useLocation();
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date); 
-  };
 
   return (
-    <Sidebar style={{ height: "650px", position: "relative" }}>
+    <Sidebar style={{ position:"static", zIndex: 0,overflow:"hidden" , height:"85vh"}}>
       <div
         style={{
           padding: "15px",
-          borderBottom: "2px solid #eee",
+          borderBottom: "1px solid #eee",
           display: "flex",
           alignItems: "center",
+          //backgroundColor: "white",
         }}
       >
         <img
@@ -77,14 +74,14 @@ const HallSideNavigation = () => {
         </div>
         <div className="menu-wrapper">
           <MenuItem
-            component={<Link to="/HallBook" />}
-            className={location.pathname === "/HallBook" ? "active" : ""}
+            component={<Link to="/AdminPendingRequests" />}
+            className={location.pathname === "/AdminPendingRequests" ? "active" : ""}
           >
             <FontAwesomeIcon icon={faBook} style={{ marginRight: "8px" }} />
-            <span style={{ marginLeft: "12px" }}>Hall Booking</span>
+            <span style={{ marginLeft: "12px" }}>Requests</span>
           </MenuItem>
         </div>
-        <div className="menu-wrapper">
+        {/* <div className="menu-wrapper">
           <MenuItem
             component={<Link to="/Status" />}
             className={location.pathname === "/Status" ? "active" : ""}
@@ -95,39 +92,9 @@ const HallSideNavigation = () => {
             />
             <span style={{ marginLeft: "12px" }}>Booking Status</span>
           </MenuItem>
-        </div>
+        </div> */}
       </Menu>
-
-      <div
-        style={{
-          marginTop: "-20px",
-          padding: "27px 100px 100px 27px",
-          boxSizing: "border-box",
-          width: "100%",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            padding: "4px",
-            boxSizing: "border-box",
-            width: "95%",
-            marginLeft : "-0.35rem",
-            // overflow: "hidden",
-          }}
-        >
-          <DatePicker
-
-            selected={selectedDate}
-            onChange={handleDateChange}
-            className="custom-calendar"
-            dateFormat="dd/MM/yyyy"
-            calendarClassName="custom-calendar"
-            popperProps={{ placement: "bottom" }}
-          />
-        </div>
-      </div>
-
+      {props.calendar && <Calendar />}
       {/* Logout Menu */}
       <Menu
         menuItemStyles={{
@@ -140,12 +107,12 @@ const HallSideNavigation = () => {
         }}
         style={{
           position: "absolute",
-          bottom: "80px",
+          bottom: "30px",
           width: "100%",
         }}
       >
         <div className="menu-wrapper">
-          <MenuItem>
+          <MenuItem component={<Link to="/login" />}>
             <FontAwesomeIcon
               icon={faSignOutAlt}
               style={{ marginRight: "8px" }}
@@ -158,4 +125,7 @@ const HallSideNavigation = () => {
   );
 };
 
-export default HallSideNavigation;
+export default AdminSideNavigation;
+
+
+

@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -34,7 +32,7 @@ const CalendarMain = ({ selectedDate }) => {
 
 
   return (
-    <div className="app" style={{ height: '1200px' }}>
+    <div className="app" style={{ height: '1200px'}}>
       <Calendar
         localizer={customLocalizer}
         events={events}

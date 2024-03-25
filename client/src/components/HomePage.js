@@ -29,19 +29,31 @@ const boxStyle = {
   border: "4px #000",
   borderRadius: "8px",
 };
+const containerStyle = {
+  display: "flex",
+  marginTop: "-2em",
+};
+const contentStyle = {
+  display: "flex", // Updated to column layout
+  marginLeft: "250px",
+  width: "90%", // Same as the width of the sidebar
+  boxSizing: "border-box",
+  padding: "2rem 1rem 0rem 1rem", // Adjusted padding for better spacing
+};
 
+const sidebarStyle = {
+  position: "fixed",
+  backgroundColor: "#f0f0f0",
+};
 const HomePage = () => {
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          height:"85vh",
-          marginTop: "-2rem"
-        }}
-      >
-        <SideNavigation />
+      <div style={containerStyle}>
+        <div style={sidebarStyle}>
+          <SideNavigation />
+        </div>
         {/* Left Column - Halls Available for Booking */}
+        <div style={contentStyle}>
         <div style={{ ...columnStyle }}>
           <div
             style={{
@@ -127,6 +139,7 @@ const HomePage = () => {
                 forenoon
               </li>
             </ul>
+            </div>
           </div>
         </div>
       </div>
