@@ -8,7 +8,7 @@ function LoginPage() {
   const [loginError, setLoginError] = useState(true);
   const [signupError, setSignupError] = useState(false);
 
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
