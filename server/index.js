@@ -9,6 +9,7 @@ import hallRoutes from './routes/hall.js';
 import bookingRoutes from './routes/booking.js';
 import clubRoutes from './routes/club.js';
 import eventRoutes from './routes/event.js';
+import membershipsRoutes from "./routes/membership.js"
 
 
 const app = express();
@@ -23,6 +24,7 @@ app.use('/hall', hallRoutes);
 app.use('/booking', bookingRoutes);
 app.use('/club', clubRoutes);
 app.use('/event', eventRoutes);
+app.use('/memberships', membershipsRoutes);
 
 
 app.get('/',(req,res)=>{
