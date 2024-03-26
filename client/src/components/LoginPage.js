@@ -288,7 +288,8 @@
 // }
 
 // export default LoginPage;
-
+import UserContext from '../components/UserContext';
+import { useContext } from 'react';
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -382,6 +383,8 @@ function LoginPage() {
     setcontainer(false);
   };
 
+  const { setUserName } = useContext(UserContext);
+
   const HandleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -398,13 +401,14 @@ function LoginPage() {
         setcontainer(false);
         toast.success(data.message);
         const userType = data.user.userType;
-        if(userType === 'Student')
+        setUserName(data.user.name);
+        if(userType === 'Student' || userType === 'Faculty')
         {
           navigate("/home");
         }
         // else if (userType = 'Faculty')
         // {
-        //   navigate("/AdminHome");
+        //   navigate("/home");
         // }
         else {
           navigate("/AdminHome");

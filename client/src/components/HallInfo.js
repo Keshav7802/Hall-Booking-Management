@@ -36,21 +36,21 @@
 
 // export default HallInfo;
 // HallDetailsPage.js
-import React from "react";
+// import React from "react";
 
-const HallDetailsPage= ({ hall }) => {
-  return (
-    <div>
-      <h2>{hall.name}</h2>
-      <p>ID: {hall.id}</p>
-      <p>Department: {hall.department}</p>
-      <img src={hall.picture} alt={hall.name} />
-      {/* Additional details can be displayed here */}
-    </div>
-  );
-};
+// function HallDetailsPage({ hall }){
+//   return (
+//     <div>
+//       <h2>{hall.name}</h2>
+//       <p>ID: {hall.id}</p>
+//       <p>Department: {hall.department}</p>
+//       <img src={hall.picture} alt={hall.name} />
+//       {/* Additional details can be displayed here */}
+//     </div>
+//   );
+// };
 
-export default HallDetailsPage;
+// export default HallDetailsPage;
 
 // import { useNavigate } from "react-router-dom";
 // import StudentHallBookingBookingForm from "./HallBookingForm";
@@ -100,3 +100,123 @@ export default HallDetailsPage;
 // }
 
 // export default HallDetailsPage;
+
+// import React from "react";
+// import { useLocation } from "react-router-dom";
+
+// const HallDetailsPage = () => {
+//   const location = useLocation();
+//   console.log("Location State: ", location.state);
+
+//   const { hallName = "Unknown", hallDepartment = "Unknown" } = location.state;
+//   console.log("Hall Name: ", hallName);
+//   console.log("Hall Department: ", hallDepartment);
+
+//   return (
+//     <div>
+//       <h1>Hall Details</h1>
+//       <p>Name: {hallName}</p>
+//       <p>Department: {hallDepartment}</p>
+//       {/* Other details here */}
+//     </div>
+//   );
+// };
+
+// const HallDetailsPage = () => {
+//   const location = useLocation();
+//   const hallName = location.state?.hallName || "Unknown";
+//   const hallId = location.state?.hallId || "Unknown";
+//   const hallDepartment = location.state?.hallDepartment || "Unknown";
+
+//   return (
+//     <div>
+//       <h1>Hall Details</h1>
+//       <p>Name: {hallName}</p>
+//       <p>ID: {hallId}</p>
+//       <p>Department: {hallDepartment}</p>
+//       {/* Other details here */}
+//     </div>
+//   );
+// };
+
+
+
+
+import React, { useState } from "react";
+import SideNavigation from "./SideNavigation";
+import { useLocation, useParams } from "react-router-dom";
+import Audi from "../assets/audi.jpg";
+import cs_lab from "../assets/cs_lab.jpg";
+import ee_sh from "../assets/ee_sh.jpg";
+import cdpc from "../assets/cdpc.jpg";
+import ee_2 from "../assets/ee_2.jpg";
+import m from "../assets/m3.jpg";
+import m5 from "../assets/m5.jpg";
+import m6 from "../assets/m6.jpg";
+import senate from "../assets/senate.jpg";
+
+const columnStyle = {
+  width: "100%",
+  padding: "2rem 0rem 3rem 5rem",
+  boxSizing: "border-box",
+  backgroundColor: "#f0f0f0",
+  marginTop: "0rem"
+};
+const placeholderStyle = {
+  borderRadius: "5px",
+  height: "30px",
+  border: "0.5px solid #212529",
+  width: "400px",
+};
+
+const HallDetailsPage = () => {
+  const { id } = useParams();
+
+    const {state} = useLocation();
+    
+  const {Department, Names, ImageUrl} = state;
+
+
+  return (
+    <div style={{ display: "flex" , marginTop : "-3rem"}}>
+      <SideNavigation />
+      <div style={{ ...columnStyle }}>
+  
+          <div className="text-3xl font-semibold text-green-700 mb-5">
+            {Names}
+          </div>
+          <div className="flex flex-wrap">
+            <img
+              src={ImageUrl}
+              className="w-1/2 max-h-96 pr-2"
+              alt="image1"
+            ></img>
+            
+          </div>
+          <div className="text-black font-bold text-2xl my-2">ABOUT :</div>
+          {/* <div className="text-justify">{selectedHall.Description}</div> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+      </div>
+    </div>
+  );
+};
+
+export default HallDetailsPage;
+
+

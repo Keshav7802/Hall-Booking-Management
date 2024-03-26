@@ -6,6 +6,8 @@ import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link, useLocation } from "react-router-dom";
 import profileIcon from "../assets/profile.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import UserContext from '../components/UserContext';
+import { useContext } from 'react';
 import {
   faHome,
   faCalendarAlt,
@@ -17,6 +19,7 @@ import Calendar from "./Calendar";
 
 const AdminSideNavigation = (props) => {
   const location = useLocation();
+  const { userName } = useContext(UserContext);
 
   return (
     <Sidebar style={{ position:"static", zIndex: 0,overflow:"hidden" , height:"85vh"}}>
@@ -39,7 +42,7 @@ const AdminSideNavigation = (props) => {
             marginRight: "10px",
           }}
         />
-        <span style={{ fontWeight: "bold" }}>Suyash Varshney</span>
+        <span style={{ fontWeight: "bold" }}>{userName}</span>
       </div>
       <Menu
         menuItemStyles={{
