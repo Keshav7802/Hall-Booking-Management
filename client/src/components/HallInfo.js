@@ -162,12 +162,7 @@ const columnStyle = {
   backgroundColor: "#f0f0f0",
   marginTop: "0rem"
 };
-const placeholderStyle = {
-  borderRadius: "5px",
-  height: "30px",
-  border: "0.5px solid #212529",
-  width: "400px",
-};
+
 
 const HallDetailsPage = () => {
   const { id } = useParams();
@@ -182,7 +177,7 @@ const HallDetailsPage = () => {
       <SideNavigation />
       <div style={{ ...columnStyle }}>
   
-          <div className="text-3xl font-semibold text-green-700 mb-5">
+          <div className="text-3xl font-semibold text-black-700 mb-5">
             {Names}
           </div>
           <div className="flex flex-wrap">
@@ -193,7 +188,7 @@ const HallDetailsPage = () => {
             ></img>
             
           </div>
-          <div className="text-black font-bold text-2xl my-2">ABOUT :</div>
+          <div className="text-black font-bold text-2xl my-2" style={{marginBottom: "10px"}}>ABOUT :</div>
           {/* <div className="text-justify">{selectedHall.Description}</div> */}
 
 
