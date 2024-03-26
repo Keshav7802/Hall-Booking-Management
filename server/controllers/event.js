@@ -51,7 +51,7 @@ export const createEvent = async(req, res) => {
 // Endpoint to delete an event
 export const deleteEvent = async(req, res) => {
     try {
-        const { eventID } = req.params;
+        const { eventID } = req.body;
         if (!eventID) {
             return res.status(400).json({ success: false, message: 'Event Id required.' });
         }
