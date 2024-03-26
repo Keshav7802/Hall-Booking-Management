@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useContext } from 'react';
 import "../css/LoginPage.css";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link, useLocation } from "react-router-dom";
@@ -6,6 +7,7 @@ import profileIcon from "../assets/profile.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import UserContext from '../components/UserContext';
 import {
   faHome,
   faCalendarAlt,
@@ -17,6 +19,7 @@ import {
 const SideNavigation = (props) => {
   const location = useLocation();
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const { userName } = useContext(UserContext);
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
@@ -26,7 +29,7 @@ const SideNavigation = (props) => {
       style={{
         marginTop: "5px",
         marginBottom: "5px",
-        position: "fixed",
+        position: "static",
         top: "7vh",
         left: 0,
         width: "calc(10vw + 16px)",
@@ -53,7 +56,7 @@ const SideNavigation = (props) => {
             marginRight: "10px",
           }}
         />
-        <span style={{ fontWeight: "bold" }}>Suyash Varshney</span>
+        <span style={{ fontWeight: "bold" }}>{userName}</span>
       </div>
       <Menu
         menuItemStyles={{

@@ -1,13 +1,11 @@
 
 
 import React from "react";
-import "../css/LoginPage.css";
+import "../../css/LoginPage.css";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link, useLocation } from "react-router-dom";
-import profileIcon from "../assets/profile.jpg";
+import profileIcon from "../../assets/profile.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import UserContext from '../components/UserContext';
-import { useContext } from 'react';
 import {
   faHome,
   faCalendarAlt,
@@ -15,11 +13,10 @@ import {
   faInfoCircle,
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import Calendar from "./Calendar";
+import Calendar from "../Calendar";
 
-const AdminSideNavigation = (props) => {
+const SideNavigation = (props) => {
   const location = useLocation();
-  const { userName } = useContext(UserContext);
 
   return (
     <Sidebar style={{ position:"static", zIndex: 0,overflow:"hidden" , height:"85vh"}}>
@@ -42,7 +39,7 @@ const AdminSideNavigation = (props) => {
             marginRight: "10px",
           }}
         />
-        <span style={{ fontWeight: "bold" }}>{userName}</span>
+        <span style={{ fontWeight: "bold" }}>ADMIN</span>
       </div>
       <Menu
         menuItemStyles={{
@@ -56,8 +53,8 @@ const AdminSideNavigation = (props) => {
       >
         <div className="menu-wrapper">
           <MenuItem
-            component={<Link to="/AdminHome" />}
-            className={location.pathname === "/AdminHome" ? "active" : ""}
+            component={<Link to="/home" />}
+            className={location.pathname === "/home" ? "active" : ""}
           >
             <FontAwesomeIcon icon={faHome} style={{ marginRight: "8px" }} />
             <span style={{ marginLeft: "12px" }}>Dashboard</span>
@@ -65,8 +62,8 @@ const AdminSideNavigation = (props) => {
         </div>
         <div className="menu-wrapper">
           <MenuItem
-            component={<Link to="/AdminHalls" />}
-            className={location.pathname === "/AdminHalls" ? "active" : ""}
+            component={<Link to="/Availability" />}
+            className={location.pathname === "/Availability" ? "active" : ""}
           >
             <FontAwesomeIcon
               icon={faCalendarAlt}
@@ -77,27 +74,27 @@ const AdminSideNavigation = (props) => {
         </div>
         <div className="menu-wrapper">
           <MenuItem
-            component={<Link to="/AdminPendingRequest" />}
-            className={location.pathname === "/AdminPendingRequest" ? "active" : ""}
+            component={<Link to="" />}
+            className={location.pathname === "/HallBook" ? "active" : ""}
           >
             <FontAwesomeIcon icon={faBook} style={{ marginRight: "8px" }} />
-            <span style={{ marginLeft: "12px" }}>Requests</span>
+            <span style={{ marginLeft: "12px" }}>Pending requests</span>
           </MenuItem>
         </div>
-        {/* <div className="menu-wrapper">
+        <div className="menu-wrapper">
           <MenuItem
-            component={<Link to="/Status" />}
+            component={<Link to="" />}
             className={location.pathname === "/Status" ? "active" : ""}
           >
             <FontAwesomeIcon
               icon={faInfoCircle}
               style={{ marginRight: "8px" }}
             />
-            <span style={{ marginLeft: "12px" }}>Booking Status</span>
+            <span style={{ marginLeft: "12px" }}>Approved requests</span>
           </MenuItem>
-        </div> */}
+        </div>
       </Menu>
-      {/* {props.calendar && <Calendar />} */}
+      {props.calendar && <Calendar />}
       {/* Logout Menu */}
       <Menu
         menuItemStyles={{
@@ -128,7 +125,4 @@ const AdminSideNavigation = (props) => {
   );
 };
 
-export default AdminSideNavigation;
-
-
-
+export default SideNavigation;

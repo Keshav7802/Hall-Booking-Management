@@ -11,6 +11,7 @@ import m from "../assets/m3.jpg";
 import m5 from "../assets/m5.jpg";
 import m6 from "../assets/m6.jpg";
 import senate from "../assets/senate.jpg";
+// import HallDetails from "./HallDetails"; 
 
 const textShadow = {
   textShadow: "5px 5px 10px rgba(80, 80, 80, 0.75)",
@@ -18,7 +19,7 @@ const textShadow = {
 
 const containerStyle = {
   display: "flex",
-  marginTop: "-2em",
+  marginTop: "-3em",
 };
 
 const sidebarStyle = {
@@ -28,11 +29,12 @@ const sidebarStyle = {
 
 const contentStyle = {
   display: "flex",
-  flexDirection: "column", 
+  flexDirection: "column",
   marginLeft: "250px",
-  width: "90%", 
+  marginTop: "0.5em",
+  width: "90%",
   boxSizing: "border-box",
-  padding: "2rem 1rem 0rem 1rem", 
+  padding: "2rem 1rem 0rem 1rem",
 };
 
 const HallBooking = () => {
@@ -220,7 +222,12 @@ const HallBooking = () => {
                   </h2>
 
                   <div style={{ textAlign: "center" }}>
-                    <Link to="/HallDetails">
+                   
+                    <Link
+                      to={ `/HallDetails/${hall.id}`} // Navigate to HallDetails page with hall id as param
+                        state={  {Department: hall.department, Names: hall.name,  ImageUrl: hall.picture} }
+                      
+                    >
                       <button
                         style={{
                           backgroundColor: "#212529",
@@ -235,6 +242,7 @@ const HallBooking = () => {
                         View Hall Details
                       </button>
                     </Link>
+
                     <Link to="/HallBookForm">
                       <button
                         style={{

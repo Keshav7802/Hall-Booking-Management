@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import AdminDashboardSidebar from "./admin_dashboard_sidebar";
-import AdminSideNavigation from "./AdminSideNavigation";
 
+import AdminSideNavigation from "./AdminSideNavigation";
+import "../css/tailwind.css";
 
 function AdminPendingRequests(props) {
   const [bookingData, setBookingData] = useState([]);
@@ -139,7 +139,7 @@ function AdminPendingRequests(props) {
         style={{
           display: "flex",
           height:"85vh",
-          marginTop: "-2rem"
+          marginTop: "-3rem"
         }}
       >
          {/* <AdminDashboardSidebar data={props.data} /> */}
