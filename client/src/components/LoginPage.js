@@ -397,7 +397,19 @@ function LoginPage() {
         setLoginError(false);
         setcontainer(false);
         toast.success(data.message);
-        navigate("/home");
+        const userType = data.user.userType;
+        if(userType === 'Student')
+        {
+          navigate("/home");
+        }
+        // else if (userType = 'Faculty')
+        // {
+        //   navigate("/AdminHome");
+        // }
+        else {
+          navigate("/AdminHome");
+        }
+        
       } else {
         setLoginError(true);
         toast.error(data.message);
@@ -418,7 +430,9 @@ function LoginPage() {
       >
         <div className="tw-form-container tw-sign-up">
           <form>
-            <h1>Registration</h1>
+          <h1 className="mb-3" style={{fontSize: "30px"}}>
+              <strong>Registration</strong>
+            </h1>
   
             <div className="tw-input-container">
               <i className="fas fa-user"></i>
@@ -473,7 +487,7 @@ function LoginPage() {
         </div>
         <div className="tw-form-container tw-sign-in">
           <form>
-            <h1 className="mb-3">
+            <h1 className="mb-3" style={{fontSize: "30px"}}>
               <strong>Login</strong>
             </h1>
             <div className="tw-input-container">
@@ -515,7 +529,7 @@ function LoginPage() {
               <div>
                 <h1>Instructions :</h1>
                 <br></br>
-                <ul className="tw-list-disc">
+                <ul className="tw-list-disc" style={{listStyleType :"disc", marginLeft: "20px"}}>
                   <li>
                     You need to register using your student email ID allocated
                     to you in order to be able to book halls.
@@ -544,7 +558,7 @@ function LoginPage() {
               <div>
                 <h1>Instructions :</h1>
                 <br></br>
-                <ul className="tw-list-disc">
+                <ul className="tw-list-disc" style={{listStyleType :"disc", marginLeft: "20px"}}>
                   <li>
                     If you have already registered using your student email ID,
                     you can login and book halls.

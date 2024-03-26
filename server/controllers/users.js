@@ -33,8 +33,14 @@ export const signin = async (req, res) => {
       .status(200)
       .json({
         result: existingUser,
+        user: {
+          name: existingUser.name,
+          email: existingUser.email,
+          userType: existingUser.userType
+        },
         token: token,
         message: "Login Succesful",
+
         ok: true,
       });
   } catch (error) {
