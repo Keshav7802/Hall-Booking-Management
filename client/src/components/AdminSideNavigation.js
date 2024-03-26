@@ -53,8 +53,8 @@ const AdminSideNavigation = (props) => {
       >
         <div className="menu-wrapper">
           <MenuItem
-            component={<Link to="/home" />}
-            className={location.pathname === "/home" ? "active" : ""}
+            component={<Link to="/AdminHome" />}
+            className={location.pathname === "/AdminHome" ? "active" : ""}
           >
             <FontAwesomeIcon icon={faHome} style={{ marginRight: "8px" }} />
             <span style={{ marginLeft: "12px" }}>Dashboard</span>
@@ -62,8 +62,8 @@ const AdminSideNavigation = (props) => {
         </div>
         <div className="menu-wrapper">
           <MenuItem
-            component={<Link to="/Availability" />}
-            className={location.pathname === "/Availability" ? "active" : ""}
+            component={<Link to="/AdminHalls" />}
+            className={location.pathname === "/AdminHalls" ? "active" : ""}
           >
             <FontAwesomeIcon
               icon={faCalendarAlt}
@@ -74,8 +74,8 @@ const AdminSideNavigation = (props) => {
         </div>
         <div className="menu-wrapper">
           <MenuItem
-            component={<Link to="/AdminPendingRequests" />}
-            className={location.pathname === "/AdminPendingRequests" ? "active" : ""}
+            component={<Link to="/AdminPendingRequest" />}
+            className={location.pathname === "/AdminPendingRequest" ? "active" : ""}
           >
             <FontAwesomeIcon icon={faBook} style={{ marginRight: "8px" }} />
             <span style={{ marginLeft: "12px" }}>Requests</span>
@@ -94,7 +94,7 @@ const AdminSideNavigation = (props) => {
           </MenuItem>
         </div> */}
       </Menu>
-      {props.calendar && <Calendar />}
+      {/* {props.calendar && <Calendar />} */}
       {/* Logout Menu */}
       <Menu
         menuItemStyles={{

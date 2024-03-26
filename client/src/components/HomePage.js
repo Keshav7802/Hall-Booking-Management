@@ -31,14 +31,16 @@ const boxStyle = {
 };
 const containerStyle = {
   display: "flex",
-  marginTop: "-2em",
+  marginTop: "-3em",
 };
 const contentStyle = {
   display: "flex", // Updated to column layout
-  marginLeft: "250px",
+  marginLeft: "231px",
+  marginTop: "-3em",
   width: "90%", // Same as the width of the sidebar
   boxSizing: "border-box",
   padding: "2rem 1rem 0rem 1rem", // Adjusted padding for better spacing
+  height: "640px",
 };
 
 const sidebarStyle = {

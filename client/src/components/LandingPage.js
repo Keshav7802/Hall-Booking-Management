@@ -28,7 +28,7 @@ const boxStyle = {
 
 const LandingPage = () => {
   return (
-    <div style={{ display: "flex", marginTop: "-2rem" }}>
+    <div style={{ display: "flex", marginTop: "-3rem"}}>
       {/* Left Column - Halls Available for Booking */}
       <div style={{ ...columnStyle }}>
         <div

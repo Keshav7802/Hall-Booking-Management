@@ -11,6 +11,7 @@ import m from "../assets/m3.jpg";
 import m5 from "../assets/m5.jpg";
 import m6 from "../assets/m6.jpg";
 import senate from "../assets/senate.jpg";
+import HallDetailsPage from "./HallInfo";
 
 const textShadow = {
   textShadow: "5px 5px 10px rgba(80, 80, 80, 0.75)",
@@ -18,7 +19,7 @@ const textShadow = {
 
 const containerStyle = {
   display: "flex",
-  marginTop: "-2em",
+  marginTop: "-3em",
 };
 
 const sidebarStyle = {
@@ -30,6 +31,7 @@ const contentStyle = {
   display: "flex",
   flexDirection: "column", 
   marginLeft: "250px",
+  marginTop: "0.5em",
   width: "90%", 
   boxSizing: "border-box",
   padding: "2rem 1rem 0rem 1rem", 
@@ -38,6 +40,9 @@ const contentStyle = {
 const HallBooking = () => {
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [searchInput, setSearchInput] = useState("");
+
+
+
 
   // Function to handle dropdown selection
   const handleDepartmentChange = (event) => {
@@ -100,6 +105,25 @@ const HallBooking = () => {
       .includes(searchInput.toLowerCase());
     return departmentMatch && searchMatch;
   });
+
+
+  
+  const [selectedHall, setSelectedHall] = useState("");   
+  var hall_list = ["Hall Booking"];
+  var [list, listAdd] = useState(hall_list);
+  
+  
+  const handleViewDetails = (hall) => {
+    console.log("View Hall Details button clicked");
+    hall_list.push(hall.Hall_Name);
+    listAdd(hall_list);
+    setSelectedHall(hall);
+  
+  };
+
+
+
+
 
   return (
     <>
@@ -220,8 +244,9 @@ const HallBooking = () => {
                   </h2>
 
                   <div style={{ textAlign: "center" }}>
-                    <Link to="/HallDetails">
+                    {/* <Link to="/HallDetails"> */}
                       <button
+                       onClick={() => handleViewDetails(hall)} 
                         style={{
                           backgroundColor: "#212529",
                           color: "#fff",
@@ -234,7 +259,7 @@ const HallBooking = () => {
                       >
                         View Hall Details
                       </button>
-                    </Link>
+                    {/* </Link> */}
                     <Link to="/HallBookForm">
                       <button
                         style={{
@@ -257,7 +282,12 @@ const HallBooking = () => {
           </div>
         </div>
       </div>
+  
+      {/* {selectedHall && <HallDetailsPage hall={selectedHall} />} */}
+      {selectedHall && <HallDetailsPage hall={selectedHall} />}
+
     </>
+
   );
 };
 

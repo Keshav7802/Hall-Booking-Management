@@ -1,7 +1,7 @@
 import React from "react";
-import SideNavigation from "./SideNavigation";
+import SideNavigation from "./AdminSideNavigation";
 import { Link } from "react-router-dom";
-import "../../css/LoginPage.css";
+import "../css/LoginPage.css";
 
 var textShadow = {
   textShadow: "5px 5px 10px rgba(80, 80, 80, 0.75)",
@@ -37,7 +37,7 @@ const HomePage = () => {
         style={{
           display: "flex",
           height:"85vh",
-          marginTop: "-2rem"
+          marginTop: "-3rem"
         }}
       >
         <SideNavigation />

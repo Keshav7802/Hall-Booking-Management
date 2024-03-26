@@ -6,6 +6,7 @@ const columnStyle = {
   padding: "2rem 0rem 3rem 5rem",
   boxSizing: "border-box",
   backgroundColor: "#f0f0f0",
+  marginTop: "0rem"
 };
 const placeholderStyle = {
   borderRadius: "5px",
@@ -30,7 +31,7 @@ const HallBookingForm = () => {
   };
 
   return (
-    <div style={{ display: "flex" , marginTop : "-2rem"}}>
+    <div style={{ display: "flex" , marginTop : "-3rem"}}>
       <SideNavigation />
       <div style={{ ...columnStyle }}>
         <h1

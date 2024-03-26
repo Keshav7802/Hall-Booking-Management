@@ -26,7 +26,7 @@ const SideNavigation = (props) => {
       style={{
         marginTop: "5px",
         marginBottom: "5px",
-        position: "fixed",
+        position: "static",
         top: "7vh",
         left: 0,
         width: "calc(10vw + 16px)",

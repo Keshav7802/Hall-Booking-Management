@@ -11,8 +11,10 @@ import BookingStatus from "./components/BookingStatus.js";
 import HallBooking from "./components/HallBooking.js";
 import HallBookingForm from "./components/HallBookingForm.js";
 import Calendar from "./components/Calendar.js";
-import HallInfo from "./components/HallInfo.js";
-import AdminPendingRequests from "./components/admin_dashboard_pending_requests.js"
+import HallDetailsPage from "./components/HallInfo.js";
+import AdminPendingRequest from "./components/admin_dashboard_pending_requests.js"
+import AdminHalls from "./components/admin_HallsAvailable.js";
+import AdminHomepage from "./components/admin_dashboard_homepage.js";
 import {ToastContainer } from "react-toastify";
 
 function App() {
@@ -30,10 +32,11 @@ function App() {
           <Route path="/Status" element={<BookingStatus />} />
           <Route path="/HallBook" element={<HallBooking />} />
           <Route path="/HallBookForm" element={<HallBookingForm />} />
-          <Route path="/HallDetails" element={<HallInfo/>}/>
+          {/* <Route path="/HallDetails" element={<HallDetailsPage/>}/> */}
           <Route path="/Cal" element={<Calendar />} />
           <Route path="/AdminPendingRequest" element={<AdminPendingRequest />} />
-          <Route path="/AdminDashboard" element={<AdminDashboard />} />
+          <Route path="/AdminHome" element={<AdminHomepage/>} />
+          <Route path="/AdminHalls" element={<AdminHalls/>} />
         </Routes>
         <Footer />
       </div>
