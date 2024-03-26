@@ -25,7 +25,8 @@ export const createBooking = async (req, res) => {
 
 //Update Bookings
 export const updateBooking = async (req, res) => {
-    const {id} = req.params;
+    // const {id} = req.params;
+    const {id} = req.body;
     console.log(id);
     const {bookingStatus, bookingDateTime, approvalDateTime, hallIDs} = req.body;
 
