@@ -6,6 +6,7 @@ const columnStyle = {
   padding: "2rem 0rem 3rem 5rem",
   boxSizing: "border-box",
   backgroundColor: "#f0f0f0",
+  marginTop: "0rem"
 };
 const placeholderStyle = {
   borderRadius: "5px",
@@ -23,14 +24,14 @@ const HallBookingForm = () => {
   const [timeFrom, setTimeFrom] = useState("");
   const [timeTo, setTimeTo] = useState("");
   const [reason, setReason] = useState("");
-
+  const [eventName, setEventName] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
   };
 
   return (
-    <div style={{ display: "flex" , marginTop : "-2rem"}}>
+    <div style={{ display: "flex" , marginTop : "-3rem"}}>
       <SideNavigation />
       <div style={{ ...columnStyle }}>
         <h1
@@ -44,6 +45,25 @@ const HallBookingForm = () => {
           Fill the following details and click submit to book the hall
         </h1>
         <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+
+          
+        <div className="form-group" style={{ marginBottom: "1rem" }}>
+  <label
+    htmlFor="eventName"
+    style={{ display: "inline-block", width: "200px" }}
+  >
+    <strong>EVENT NAME :</strong>
+  </label>
+  <input
+    type="text"
+    id="eventName"
+    value={eventName} // Assuming eventName is a state variable
+    onChange={(e) => setEventName(e.target.value)} // Assuming setEventName is a function to update the eventName state
+    style={{ ...placeholderStyle }} // PlaceholderStyle is assumed to be defined elsewhere
+  />
+</div>
+  
+      
           <div className="form-group" style={{ marginBottom: "1rem" }}>
             <label
               htmlFor="department"
@@ -200,6 +220,7 @@ const HallBookingForm = () => {
                 height: "200px",
                 border: "0.5px solid #212529",
                 width: "400px",
+                padding: "0.9rem"
               }} // Allow textarea to grow dynamically
             />
           </div>

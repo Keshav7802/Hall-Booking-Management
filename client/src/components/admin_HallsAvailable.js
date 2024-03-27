@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import HallNavigation from "./SideNavigation";
+import HallNavigation from "./AdminSideNavigation";
 import CalendarMain from "./Calendar";
 import "../css/LoginPage.css";
 // import Select, { components } from "react-select";
@@ -124,6 +124,16 @@ const HallAvailable = () => {
           <div style={headingStyle}>Partly Available</div>
           <div style={{ ...blueSquare }}></div>
           <div style={headingStyle}>Available</div>
+          {/* <div
+            style={{ ...customSelectStyles.container, alignSelf: "flex-end" }}
+          >
+            <Select
+              styles={customSelectStyles}
+              options={filterOptions}
+              placeholder="Filter Search Bar"
+              components={{ DropdownIndicator }}
+            />
+          </div> */}
         </div>
         <div style={{ marginTop: "2rem" }}>
           <CalendarMain />
