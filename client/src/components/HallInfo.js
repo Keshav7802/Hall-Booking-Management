@@ -145,6 +145,9 @@
 import React, { useState } from "react";
 import SideNavigation from "./SideNavigation";
 import { useLocation, useParams } from "react-router-dom";
+import UserContext from "../components/UserContext";
+import { useContext } from 'react';
+import { Link } from "react-router-dom";
 import Audi from "../assets/audi.jpg";
 import cs_lab from "../assets/cs_lab.jpg";
 import ee_sh from "../assets/ee_sh.jpg";
@@ -165,11 +168,33 @@ const columnStyle = {
 
 
 const HallDetailsPage = () => {
+  const { userName } = useContext(UserContext);
   const { id } = useParams();
 
     const {state} = useLocation();
     
   const {Department, Names, ImageUrl} = state;
+
+  if (!userName) {
+    return (
+      <div>
+      <div style={{ textAlign: 'center', color: 'red', fontWeight: 'bold', fontSize: '20px' }}>
+        User Not Logged In, Please Login First!!!
+      </div>
+       <Link
+       className="btn btn-dark"
+       to="/login"
+       role="button"
+       style={{ marginTop: "4rem", marginLeft: "30rem" }}
+     >
+       <text className="mx-4 my-3" style={{ color: "white" }}>
+         <b>Login</b>
+       </text>
+     </Link>
+     </div>
+    );
+    
+  }
 
 
   return (

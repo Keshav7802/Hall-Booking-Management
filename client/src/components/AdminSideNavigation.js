@@ -19,7 +19,12 @@ import Calendar from "./Calendar";
 
 const AdminSideNavigation = (props) => {
   const location = useLocation();
-  const { userName } = useContext(UserContext);
+  // const { userName } = useContext(UserContext);
+  const { userName, logout } = useContext(UserContext);
+
+  const handleLogout = () => {
+    logout(); // Call the logout function from UserContext
+  };
 
   return (
     <Sidebar style={{ position:"static", zIndex: 0,overflow:"hidden" , height:"85vh"}}>
@@ -114,12 +119,9 @@ const AdminSideNavigation = (props) => {
           width: "100%",
         }}
       >
-        <div className="menu-wrapper">
-          <MenuItem component={<Link to="/login" />}>
-            <FontAwesomeIcon
-              icon={faSignOutAlt}
-              style={{ marginRight: "8px" }}
-            />
+         <div className="menu-wrapper">
+          <MenuItem onClick={handleLogout}> {/* Call handleLogout function on click */}
+            <FontAwesomeIcon icon={faSignOutAlt} style={{ marginRight: "8px" }} />
             <span style={{ marginLeft: "12px" }}>Logout</span>
           </MenuItem>
         </div>
