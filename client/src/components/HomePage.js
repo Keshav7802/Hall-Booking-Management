@@ -1,7 +1,9 @@
 import React from "react";
 import SideNavigation from "./SideNavigation";
-import { Link } from "react-router-dom";
 import "../css/LoginPage.css";
+import UserContext from "../components/UserContext";
+import { useContext } from 'react';
+import { Link } from "react-router-dom";
 
 var textShadow = {
   textShadow: "5px 5px 10px rgba(80, 80, 80, 0.75)",
@@ -48,6 +50,29 @@ const sidebarStyle = {
   backgroundColor: "#f0f0f0",
 };
 const HomePage = () => {
+  const { userName } = useContext(UserContext);
+
+  if (!userName) {
+    return (
+      <div>
+      <div style={{ textAlign: 'center', color: 'red', fontWeight: 'bold', fontSize: '20px' }}>
+        User Not Logged In, Please Login First!!!
+      </div>
+       <Link
+       className="btn btn-dark"
+       to="/login"
+       role="button"
+       style={{ marginTop: "4rem", marginLeft: "38rem" }}
+     >
+       <text className="mx-4 my-3" style={{ color: "white" }}>
+         <b>Login</b>
+       </text>
+     </Link>
+     </div>
+    );
+    
+  }
+
   return (
     <>
       <div style={containerStyle}>
