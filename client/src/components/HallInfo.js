@@ -185,7 +185,7 @@ const HallDetailsPage = () => {
        className="btn btn-dark"
        to="/login"
        role="button"
-       style={{ marginTop: "4rem", marginLeft: "30rem" }}
+       style={{ marginTop: "4rem", marginLeft: "38rem" }}
      >
        <text className="mx-4 my-3" style={{ color: "white" }}>
          <b>Login</b>

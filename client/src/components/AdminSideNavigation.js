@@ -8,6 +8,7 @@ import profileIcon from "../assets/profile.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UserContext from '../components/UserContext';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   faHome,
   faCalendarAlt,
@@ -19,11 +20,12 @@ import Calendar from "./Calendar";
 
 const AdminSideNavigation = (props) => {
   const location = useLocation();
-  // const { userName } = useContext(UserContext);
+  const history = useNavigate();
   const { userName, logout } = useContext(UserContext);
 
   const handleLogout = () => {
     logout(); // Call the logout function from UserContext
+    history('/login');
   };
 
   return (

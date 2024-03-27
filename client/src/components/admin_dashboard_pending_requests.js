@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-
+import UserContext from "../components/UserContext";
+import { useContext } from 'react';
+import { Link } from "react-router-dom";
 import AdminSideNavigation from "./AdminSideNavigation";
 import "../css/tailwind.css";
 
 function AdminPendingRequests(props) {
   const [bookingData, setBookingData] = useState([]);
+  const { userName } = useContext(UserContext);
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [refresh, setRefresh] = useState(true);
 
@@ -132,6 +135,27 @@ function AdminPendingRequests(props) {
 //       console.error("Error:", error);
 //     }
   };
+
+  if (!userName) {
+    return (
+      <div>
+      <div style={{ textAlign: 'center', color: 'red', fontWeight: 'bold', fontSize: '20px' }}>
+        User Not Logged In, Please Login First!!!
+      </div>
+       <Link
+       className="btn btn-dark"
+       to="/login"
+       role="button"
+       style={{ marginTop: "4rem", marginLeft: "38rem" }}
+     >
+       <text className="mx-4 my-3" style={{ color: "white" }}>
+         <b>Login</b>
+       </text>
+     </Link>
+     </div>
+    );
+    
+  }
 
   return (
     // <div className="flex flex-col md:flex-row">
