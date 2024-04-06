@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import SideNavigation from "./SideNavigation";
 import "../css/LoginPage.css";
 import Audi from "../assets/audi.jpg";
@@ -11,6 +11,9 @@ import m from "../assets/m3.jpg";
 import m5 from "../assets/m5.jpg";
 import m6 from "../assets/m6.jpg";
 import senate from "../assets/senate.jpg";
+import UserContext from "../components/UserContext";
+import { useContext } from 'react';
+import { Link } from "react-router-dom";
 // import HallDetails from "./HallDetails"; 
 
 const textShadow = {
@@ -38,6 +41,7 @@ const contentStyle = {
 };
 
 const HallBooking = () => {
+  const { userName } = useContext(UserContext);
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [searchInput, setSearchInput] = useState("");
 
@@ -102,7 +106,26 @@ const HallBooking = () => {
       .includes(searchInput.toLowerCase());
     return departmentMatch && searchMatch;
   });
-
+  if (!userName) {
+    return (
+      <div>
+      <div style={{ textAlign: 'center', color: 'red', fontWeight: 'bold', fontSize: '20px' }}>
+        User Not Logged In, Please Login First!!!
+      </div>
+       <Link
+       className="btn btn-dark"
+       to="/login"
+       role="button"
+       style={{ marginTop: "4rem", marginLeft: "38rem" }}
+     >
+       <text className="mx-4 my-3" style={{ color: "white" }}>
+         <b>Login</b>
+       </text>
+     </Link>
+     </div>
+    );
+    
+  }
   return (
     <>
       <div style={containerStyle}>
