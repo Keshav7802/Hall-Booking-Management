@@ -51,6 +51,7 @@ export const createEvent = async(req, res) => {
 // Endpoint to delete an event
 export const deleteEvent = async(req, res) => {
     try {
+
         const { eventID } = req.params;
         if (!eventID) {
             return res.status(400).json({ success: false, message: 'Event Id required.' });
@@ -61,6 +62,23 @@ export const deleteEvent = async(req, res) => {
     } catch (error) {
         res.status(400).json({ success: false, message: 'Error deleting event, try again.' });
     }
+};
+
+
+// GET event by ID 
+export const getEventbyID = async(req, res) => {
+    try {
+        const eventID = req.params.id;
+        if (!eventID) throw error("No Hall Id found");
+        const event = await events.find({eventID});
+    
+        res.status(200).json(event);
+      } catch (err) {
+        res.status(400).json({
+          status: "Failed",
+          message: err,
+        });
+      }
 };
 
 // GET all events
