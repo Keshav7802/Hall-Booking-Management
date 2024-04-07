@@ -69,8 +69,8 @@ export const deleteEvent = async(req, res) => {
 export const getEventbyID = async(req, res) => {
     try {
         const eventID = req.params.id;
-        if (!eventID) throw error("No Hall Id found");
-        const event = await events.find({eventID});
+        if (!eventID) throw error("Event not found");
+        const event = await EventModel.find({eventID});
     
         res.status(200).json(event);
       } catch (err) {
