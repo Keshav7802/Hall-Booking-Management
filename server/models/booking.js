@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const bookingSchema = mongoose.Schema({
   //bookingID: Number,
   userID: String,
-  eventID: String,
+  eventName: String,
   bookingStatus: { type: String, enum: ['Pending', 'Approved', 'Rejected', 'Updated'] },
   bookingDateTime: Date,
   approvalDateTime: Date,
