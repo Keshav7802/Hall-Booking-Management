@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import SideNavigation from "./SideNavigation";
 import UserContext from "../components/UserContext";
-import { useContext } from 'react';
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const columnStyle = {
   width: "100%",
   padding: "2rem 0rem 3rem 5rem",
   boxSizing: "border-box",
   backgroundColor: "#f0f0f0",
-  marginTop: "0rem"
+  marginTop: "0rem",
 };
 const placeholderStyle = {
   borderRadius: "5px",
@@ -21,42 +22,77 @@ const placeholderStyle = {
 const HallBookingForm = () => {
   const { userName } = useContext(UserContext);
   const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [eventType, setEventType] = useState("");
   const [selectedHall, setSelectedHall] = useState("");
   const [selectedAffiliatedDepartment, setSelectedAffiliatedDepartment] =
     useState("");
-  const [date, setDate] = useState("");
-  const [timeFrom, setTimeFrom] = useState("");
-  const [timeTo, setTimeTo] = useState("");
+  // const [date, setDate] = useState(Date());
+  const [DatetimeFrom, setDateTimeFrom] = useState(Date());
+  const [DatetimeTo, setDateTimeTo] = useState(Date());
   const [reason, setReason] = useState("");
   const [eventName, setEventName] = useState("");
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API}/event/createEvent`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            eventName: eventName,
+            eventType: eventType,
+            clubName: selectedDepartment,
+            eventPurpose: reason,
+            startDateTime: DatetimeFrom,
+            endDateTime: DatetimeTo,
+            // ticketBooking: false,
+            // ticketID: null,
+          }),
+        }
+      );
+      const data = await response.json();
+      if (data.ok) {
+        toast.success("Form Submitted Successfully");
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error("Form not submitted");
+    }
   };
 
   if (!userName) {
     return (
       <div>
-      <div style={{ textAlign: 'center', color: 'red', fontWeight: 'bold', fontSize: '20px' }}>
-        User Not Logged In, Please Login First!!!
+        <div
+          style={{
+            textAlign: "center",
+            color: "red",
+            fontWeight: "bold",
+            fontSize: "20px",
+          }}
+        >
+          User Not Logged In, Please Login First!!!
+        </div>
+        <Link
+          className="btn btn-dark"
+          to="/login"
+          role="button"
+          style={{ marginTop: "4rem", marginLeft: "38rem" }}
+        >
+          <text className="mx-4 my-3" style={{ color: "white" }}>
+            <b>Login</b>
+          </text>
+        </Link>
       </div>
-       <Link
-       className="btn btn-dark"
-       to="/login"
-       role="button"
-       style={{ marginTop: "4rem", marginLeft: "38rem" }}
-     >
-       <text className="mx-4 my-3" style={{ color: "white" }}>
-         <b>Login</b>
-       </text>
-     </Link>
-     </div>
     );
-    
   }
 
   return (
-    <div style={{ display: "flex" , marginTop : "-3rem"}}>
+    <div style={{ display: "flex", marginTop: "-3rem" }}>
       <SideNavigation />
       <div style={{ ...columnStyle }}>
         <h1
@@ -70,25 +106,37 @@ const HallBookingForm = () => {
           Fill the following details and click submit to book the hall
         </h1>
         <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+          <div className="form-group" style={{ marginBottom: "1rem" }}>
+            <label
+              htmlFor="eventName"
+              style={{ display: "inline-block", width: "200px" }}
+            >
+              <strong>EVENT NAME :</strong>
+            </label>
+            <input
+              type="text"
+              id="eventName"
+              value={eventName}
+              onChange={(e) => setEventName(e.target.value)}
+              style={{ ...placeholderStyle }}
+            />
+          </div>
+          <div className="form-group" style={{ marginBottom: "1rem" }}>
+            <label
+              htmlFor="eventType"
+              style={{ display: "inline-block", width: "200px" }}
+            >
+              <strong>Event TYPE :</strong>
+            </label>
+            <input
+              type="text"
+              id="eventType"
+              value={eventType}
+              onChange={(e) => setEventType(e.target.value)}
+              style={{ ...placeholderStyle }}
+            />
+          </div>
 
-          
-        <div className="form-group" style={{ marginBottom: "1rem" }}>
-  <label
-    htmlFor="eventName"
-    style={{ display: "inline-block", width: "200px" }}
-  >
-    <strong>EVENT NAME :</strong>
-  </label>
-  <input
-    type="text"
-    id="eventName"
-    value={eventName} // Assuming eventName is a state variable
-    onChange={(e) => setEventName(e.target.value)} // Assuming setEventName is a function to update the eventName state
-    style={{ ...placeholderStyle }} // PlaceholderStyle is assumed to be defined elsewhere
-  />
-</div>
-  
-      
           <div className="form-group" style={{ marginBottom: "1rem" }}>
             <label
               htmlFor="department"
@@ -173,7 +221,7 @@ const HallBookingForm = () => {
               <option value="Alpha Club">Alpha </option>
             </select>
           </div>
-          <div className="form-group" style={{ marginBottom: "1rem" }}>
+          {/* <div className="form-group" style={{ marginBottom: "1rem" }}>
             <label
               htmlFor="date"
               style={{ display: "inline-block", width: "200px" }}
@@ -187,7 +235,7 @@ const HallBookingForm = () => {
               onChange={(e) => setDate(e.target.value)}
               style={{ ...placeholderStyle }}
             />
-          </div>
+          </div> */}
           {/* Dropdown for Time from */}
           <div className="form-group" style={{ marginBottom: "1rem" }}>
             <label
@@ -197,10 +245,13 @@ const HallBookingForm = () => {
               <strong>TIME FROM :</strong>
             </label>
             <input
-              type="time"
+              type="datetime-local"
               id="timeFrom"
-              value={timeFrom}
-              onChange={(e) => setTimeFrom(e.target.value)}
+              value={DatetimeFrom}
+              onChange={(e) => {
+                setDateTimeFrom(e.target.value);
+                console.log(DatetimeFrom);
+              }}
               style={{ ...placeholderStyle }}
             />
           </div>
@@ -213,10 +264,10 @@ const HallBookingForm = () => {
               <strong>TIME TO :</strong>
             </label>
             <input
-              type="time"
+              type="datetime-local"
               id="timeTo"
-              value={timeTo}
-              onChange={(e) => setTimeTo(e.target.value)}
+              value={DatetimeTo}
+              onChange={(e) => setDateTimeTo(e.target.value)}
               style={{ ...placeholderStyle }}
             />
           </div>
@@ -245,8 +296,8 @@ const HallBookingForm = () => {
                 height: "200px",
                 border: "0.5px solid #212529",
                 width: "400px",
-                padding: "0.9rem"
-              }} // Allow textarea to grow dynamically
+                padding: "0.9rem",
+              }}
             />
           </div>
 
@@ -271,6 +322,5 @@ const HallBookingForm = () => {
     </div>
   );
 };
-
 
 export default HallBookingForm;

@@ -9,10 +9,13 @@ const calculateDuration = (startDateTime, endDateTime) => {
 // Endpoint to create an event
 export const createEvent = async(req, res) => {
     try {
-        const { eventName, eventType, eventPurpose, startDateTime, endDateTime, ticketBooking, ticketID, clubID, multipleHallsNeeded } = req.body;
+        // const { eventName, eventType, eventPurpose, startDateTime, endDateTime, ticketBooking, ticketID, clubID, multipleHallsNeeded } = req.body;
+        const { eventName, eventType, eventPurpose, startDateTime, endDateTime,clubName} = req.body;
+        // const { eventName, eventType, eventPurpose, startDateTime, endDateTime, ticketBooking, ticketID,clubName} = req.body;
 
         // Check if all required fields are present
-        if (!eventName || !eventType || !eventPurpose || !startDateTime || !endDateTime || ticketBooking === undefined || clubID === undefined || multipleHallsNeeded === undefined) {
+        // if (!eventName || !eventType || !eventPurpose || !startDateTime || !endDateTime || ticketBooking === undefined || clubID === undefined || multipleHallsNeeded === undefined) {
+        if (!eventName || !eventType || !eventPurpose || !startDateTime || !endDateTime||clubName === undefined) {
             return res.status(400).json({ success: false, message: 'Missing required fields in the request body.' });
         }
 
@@ -26,7 +29,7 @@ export const createEvent = async(req, res) => {
         const eventDuration = calculateDuration(new Date(startDateTime), new Date(endDateTime));
 
         // Check if ticketBooking is true and ensure ticketID is provided
-        const validatedTicketID = ticketBooking ? ticketID : null;
+        // const validatedTicketID = ticketBooking ? ticketID : null;
 
         const event = await EventModel.create({
             eventName,
@@ -35,13 +38,13 @@ export const createEvent = async(req, res) => {
             startDateTime,
             endDateTime,
             eventDuration,
-            ticketBooking,
-            ticketID: validatedTicketID,
-            clubID,
-            multipleHallsNeeded
+            // ticketBooking,
+            // ticketID: validatedTicketID,
+            // clubID,
+            // multipleHallsNeeded
         });
 
-        res.status(201).json({ success: true, event });
+        res.status(201).json({ success: true, event:event,ok:true });
     } catch (error) {
         res.status(400).json({ success: false, message: 'Error creating event, try again.' });
     }

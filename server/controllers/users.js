@@ -29,20 +29,19 @@ export const signin = async (req, res) => {
       { expiresIn: "1h" }
     ); //._id is same as node.js default...
 
-    res
-      .status(200)
-      .json({
-        result: existingUser,
-        user: {
-          name: existingUser.name,
-          email: existingUser.email,
-          userType: existingUser.userType
-        },
-        token: token,
-        message: "Login Succesful",
+    res.status(200).json({
+      result: existingUser,
+      user: {
+        name: existingUser.name,
+        email: existingUser.email,
+        userType: existingUser.userType,
+        userId: existingUser.id,
+      },
+      token: token,
+      message: "Login Succesful",
 
-        ok: true,
-      });
+      ok: true,
+    });
   } catch (error) {
     res.status(500).json({ message: "Something Went Wrong" });
   }
@@ -56,7 +55,10 @@ export const signup = async (req, res) => {
     if (existingUser)
       return res
         .status(400)
-        .json({ message: "Email Already Has An Account. Kindly Sign In!",ok:true });
+        .json({
+          message: "Email Already Has An Account. Kindly Sign In!",
+          ok: true,
+        });
 
     if (password != confirmPassword)
       return res.status(403).json({ message: "Passwords do not match!" });
