@@ -3,13 +3,16 @@ import UserContext from "../components/UserContext";
 import { useContext } from 'react';
 import { Link } from "react-router-dom";
 import AdminSideNavigation from "./AdminSideNavigation";
+import { toast } from "react-toastify";
 import "../css/tailwind.css";
+import { useNavigate } from "react-router-dom";
 
 function AdminPendingRequests(props) {
   const [bookingData, setBookingData] = useState([]);
   const { userName } = useContext(UserContext);
   const [selectedStatus, setSelectedStatus] = useState("all");
-  const [refresh, setRefresh] = useState(true);
+  const [refreshFlag, setRefreshFlag] = useState(false);
+  const navigate = useNavigate();
 
   //STUDENT ODA DETAILS
   const userData = JSON.parse(localStorage.getItem("authToken"));
@@ -18,25 +21,21 @@ function AdminPendingRequests(props) {
   const bookingDate = new Date();
   bookingDate.setDate(bookingDate.getDate() - 1);
 
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       const data = await fetch(
-//         "https://au-hallbooking-backend.onrender.com/api/booking/adminBookings",
-//         {
-//           method: "GET",
-//           headers: {
-//             "Content-Type": "application/json",
-//             Authorization: `Bearer ${userData.token}`,
-//           },
-//         }
-//       );
-//       const hallData = await data.json();
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetch("http://localhost:3001/booking/getAllBookings", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${userData.token}`,
+        },
+      });
+      const hallData = await data.json();
 
-//       setBookingData(hallData);
-//     };
-//     fetchData();
-//   }, [refresh]);
-
+      setBookingData(hallData);
+    };
+    fetchData();
+  }, []);
   const filteredBookings =
     selectedStatus === "all"
       ? bookingData
@@ -44,11 +43,11 @@ function AdminPendingRequests(props) {
 
   const getStatusClassName = (status) => {
     switch (status) {
-      case "rejected":
+      case "Rejected":
         return "block w-full p-4 bg-[#fe3233] rounded-lg shadow-lg hover:bg-[#f0292a] hover:cursor-default";
-      case "approved":
+      case "Approved":
         return "block w-full p-4 bg-[#37b317] rounded-lg shadow-lg hover:bg-[#31a314] hover:cursor-default"; // cursor-pointer for clickable
-      case "pending":
+      case "Pending":
         return "block w-full p-4 bg-[#c9c9c9] rounded-lg shadow-lg hover:bg-[#c0c0c0] hover:cursor-default";
       default:
         return "bg-white cursor-default";
@@ -72,68 +71,70 @@ function AdminPendingRequests(props) {
   const timeOptions = { hour: "numeric", minute: "numeric" }; //TIME OPTIONS
 
   const handleReject = async (bookingId) => {
-//     try {
-//       const response = await fetch(
-//         "https://au-hallbooking-backend.onrender.com/api/booking/updateBooking",
-//         {
-//           method: "PATCH",
-//           headers: {
-//             "Content-Type": "application/json",
-//             Authorization: `Bearer ${userData.token}`,
-//           },
-//           body: JSON.stringify({
-//             _id: bookingId,
-//             Status: "rejected",
-//           }),
-//         }
-//       );
+    try {
+      const response = await fetch(
+        "http://localhost:3001/booking/updateBooking",
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${userData.token}`,
+          },
+          body: JSON.stringify({
+            id: bookingId,
+            bookingStatus: "Rejected",
+            approvalDateTime: new Date(),
+          }),
+        }
+      );
 
-//       if (response.ok) {
-//         // Handle success
-//         console.log("Booking rejected successfully");
-//         setRefresh(refresh ? false : true);
-//         // Add any additional logic or state updates as needed
-//       } else {
-//         // Handle error
-//         console.error("Failed to reject booking");
-//       }
-//     } catch (error) {
-//       console.error("Error:", error);
-//     }
+      if (response.ok) {
+        // Handle success
+        // console.log("Booking rejected successfully");
+        toast.success("Booking Rejected Successfully");
+        navigate("/AdminPendingRequest");
+        // Add any additional logic or state updates as needed
+      } else {
+        // Handle error
+        toast.error("Failed to reject booking");
+      }
+    } catch (error) {
+      toast.error("Error:", error);
+    }
   };
 
   const handleApprove = async (bookingId) => {
-//     try {
-//       const response = await fetch(
-//         "https://au-hallbooking-backend.onrender.com/api/booking/updateBooking",
-//         {
-//           method: "PATCH",
-//           headers: {
-//             "Content-Type": "application/json",
-//             Authorization: `Bearer ${userData.token}`,
-//           },
-//           body: JSON.stringify({
-//             _id: bookingId,
-//             Status: "approved",
-//           }),
-//         }
-//       );
-//       console.log(response);
-//       if (response.ok) {
-//         // Handle success
-//         const data = await response.json();
-//         console.log(data);
-//         console.log("Booking Approved successfully");
-//         // Add any additional logic or state updates as needed
-//       } else {
-//         // Handle error
-//         console.error("Failed to reject booking");
-//       }
-
-//       setRefresh(refresh ? false : true);
-//     } catch (error) {
-//       console.error("Error:", error);
-//     }
+    console.log(bookingId)
+    try {
+      const response = await fetch(
+        "http://localhost:3001/booking/updateBooking",
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${userData.token}`,
+          },
+          body: JSON.stringify({
+            id: bookingId,
+            bookingStatus: "Approved",
+            approvalDateTime: new Date(),
+          }),
+        }
+      );
+      console.log(response);
+      if (response.ok) {
+        // Handle success
+        // console.log("Booking Approved successfully");
+        toast.success("Booking Approved Successfully");
+        navigate("/AdminPendingRequest");
+        // Add any additional logic or state updates as needed
+      } else {
+        // Handle error
+        toast.error("Failed to approve booking");
+      }
+    } catch (error) {
+      toast.error("Error:", error);
+    }
   };
 
   if (!userName) {
@@ -204,9 +205,9 @@ function AdminPendingRequests(props) {
               required
             >
               <option value="all">All</option>
-              <option value="approved">Approved</option>
-              <option value="pending">Pending</option>
-              <option value="rejected">Rejected</option>
+              <option value="Approved">Approved</option>
+              <option value="Pending">Pending</option>
+              <option value="Rejected">Rejected</option>
             </select>
           </div>
         </div>
@@ -216,33 +217,33 @@ function AdminPendingRequests(props) {
         <ul>
           {filteredBookings.map((booking) => (
             <li className="p-2">
-              <div className={`${getStatusClassName(booking.Status)}`}>
+              <div className={`${getStatusClassName(booking.bookingStatus)}`}>
                 <h5 className="mb-2 text-xl font-bold tracking-tight">
-                  {booking.Hall_Name} |{" "}
-                  {new Date(booking.Date).toLocaleDateString("en-US", options)}{" "}
+                  {booking.hallName} |{" "}
+                  {new Date(booking.startDateTime).toLocaleDateString("en-US", options)}{" "}
                   |{" "}
-                  {new Date(booking.Time_From).toLocaleTimeString(
+                  {new Date(booking.startDateTime).toLocaleTimeString(
                     "en-US",
                     timeOptions
                   )}{" "}
                   TO{" "}
-                  {new Date(booking.Time_To).toLocaleTimeString(
+                  {new Date(booking.endDateTime).toLocaleTimeString(
                     "en-US",
                     timeOptions
                   )}{" "}
                 </h5>
                 <div className="flex justify-between items-end">
                   <div className="font-normal text-black text-sm">
-                    <div>Affiliated Department/Club: {booking.Affiliated}</div>
-                    <div>Reason : {booking.Reason}</div>
+                    <div>Affiliated Department/Club: {booking.clubName}</div>
+                    <div>Reason : {booking.eventPurpose}</div>
                   </div>
                   <div className="text-sm">
                     <div>Submitted On :</div>
-                    <div>{new Date(booking.createdAt).toLocaleString()}</div>
+                    <div>{new Date(booking.bookingDateTime).toLocaleString()}</div>
                   </div>
                 </div>
 
-                {booking.Status === "pending" ? (
+                {booking.bookingStatus === "Pending" ? (
                   <div className="flex justify-end">
                     <button
                       className="bg-green-500 text-white hover:bg-green-600 font-semibold text-md px-4 py-2 rounded shadow hover:shadow-lg mr-2"

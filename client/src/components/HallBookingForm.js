@@ -4,6 +4,7 @@ import UserContext from "../components/UserContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const columnStyle = {
   width: "100%",
@@ -31,11 +32,13 @@ const HallBookingForm = () => {
   const [DatetimeTo, setDateTimeTo] = useState(Date());
   const [reason, setReason] = useState("");
   const [eventName, setEventName] = useState("");
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API}/event/createEvent`,
+        `${process.env.REACT_APP_API}/booking/createBooking`,
         {
           method: "POST",
           headers: {
@@ -44,20 +47,24 @@ const HallBookingForm = () => {
           body: JSON.stringify({
             eventName: eventName,
             eventType: eventType,
-            clubName: selectedDepartment,
+            hallName: selectedHall,
+            departmentBlock: selectedDepartment,
+            clubName: selectedAffiliatedDepartment,
             eventPurpose: reason,
             startDateTime: DatetimeFrom,
             endDateTime: DatetimeTo,
+            bookingStatus: "Pending",
+            bookingDateTime: new Date(),
             // ticketBooking: false,
             // ticketID: null,
           }),
         }
       );
-      const data = await response.json();
-      if (data.ok) {
+      if (response.ok) {
         toast.success("Form Submitted Successfully");
+        navigate('/Status')
       } else {
-        toast.error(data.message);
+        toast.error(response.message);
       }
     } catch (error) {
       toast.error("Form not submitted");
