@@ -1,13 +1,22 @@
 import mongoose from 'mongoose';
 
 const bookingSchema = mongoose.Schema({
-  //bookingID: Number,
   userID: String,
-  eventID: String,
-  bookingStatus: { type: String, enum: ['Pending', 'Approved', 'Rejected', 'Updated'] },
+  eventName: String,
+  eventType: String,
+  hallName: String,
+  departmentBlock: String,
+  clubName: String,
+  startDateTime: Date,
+  endDateTime: Date,
+  eventDuration: Number,
+  eventPurpose: String,
+  bookingStatus: {
+    type: String,
+    enum: ["Pending", "Approved", "Rejected"],
+  },
   bookingDateTime: Date,
   approvalDateTime: Date,
-  hallIDs: [{ type: Number }],
 });
 
 const BookingModel = mongoose.model('BookingModel', bookingSchema);
