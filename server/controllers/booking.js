@@ -4,13 +4,9 @@ import mongoose from "mongoose";
 
 //CREATE BOOKING
 export const createBooking = async (req, res) => {
+  console.log(req);
   const selectedHallName = req.body.hallName;
-  //const data = await HallModel.findOne({ hallName: selectedHallName });
-
-//   req.body.Faculty_ID = data.Faculty_ID; Faculty_ID not present in halls
-//   const bookingId = await autoInc();
   const newBooking = req.body;
-//   newBooking["Booking_ID"] = bookingId;
   console.log(newBooking);
   try {
     const savedBooking = await BookingModel.create(newBooking);
@@ -25,43 +21,48 @@ export const createBooking = async (req, res) => {
 
 //Update Bookings
 export const updateBooking = async (req, res) => {
-    const {id} = req.params;
-    console.log(id);
-    const {bookingStatus, bookingDateTime, approvalDateTime, hallIDs} = req.body;
+  console.log(req)
+  const { id, bookingStatus, approvalDateTime } = req.body;
 
-    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(400).send(`No post with id: ${id}`);
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(400).send(`No post with id: ${id}`);
 
-    const updatedBooking = {bookingStatus, bookingDateTime, approvalDateTime, hallIDs, _id:id}; 
+  const updatedBooking = { bookingStatus, approvalDateTime };
+  console.log("updated", updateBooking)
 
-    console.log(updatedBooking);
+  try {
+    // Use findByIdAndUpdate to update the booking in the database
+    const updatedBookingDoc = await BookingModel.findByIdAndUpdate(
+      id,
+      updatedBooking,
+      { new: true }
+    );
 
-    try {
-        // Use findByIdAndUpdate to update the booking in the database
-        const updatedBookingDoc = await BookingModel.findByIdAndUpdate(id, updatedBooking, { new: true });
-    
-        // Check if the booking was found and updated
-        if (!updatedBookingDoc) {
-          return res.status(404).send(`Booking with id: ${id} not found`);
-        }
-    
-        // If the booking was successfully updated, send the updated booking details in the response
-        res.status(200).json(updatedBookingDoc);
-      } catch (err) {
-        // If an error occurs during the update operation, send an error response
-        console.error(err);
-        res.status(500).json({
-          status: "Failed",
-          message: "An error occurred while updating the booking",
-          error: err.message // Include the error message in the response
-        });
+    // Check if the booking was found and updated
+    if (!updatedBookingDoc) {
+      return res.status(404).send(`Booking with id: ${id} not found`);
+    }
+
+    // If the booking was successfully updated, send the updated booking details in the response
+    res.status(200).json(updatedBookingDoc);
+  } catch (err) {
+    // If an error occurs during the update operation, send an error response
+    console.error(err);
+    res.status(500).json({
+      status: "Failed",
+      message: "An error occurred while updating the booking",
+      error: err.message, // Include the error message in the response
+    });
   }
 };
+
 
 //Get all Bookngs
 export const getAllBookings = async (req, res) => {
   try {
+    console.log(req);
     const halls = await BookingModel.find({
-      bookingStatus: { $in: ["Pending", "Approved", "Updated"] },
+      bookingStatus: { $in: ["Pending", "Approved", "Rejected"] },
     });
     res.status(200).json(halls);
   } catch (err) {
