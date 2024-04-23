@@ -1,0 +1,21 @@
+.sidebar-container {
+    position: relative;
+  }
+  
+  .sidebar-container.collapsed {
+    width: 50px; /* Set your collapsed width */
+  }
+  
+  .toggle-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 999;
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  /* Add your media queries for responsiveness here */
+  
