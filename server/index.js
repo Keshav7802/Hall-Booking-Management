@@ -16,7 +16,11 @@ dotenv.config();
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+    origin: ["https://hall-booking-management-frontend.vercel.app/"], 
+    methods: ["POST", "GET"],
+    credentials: true
+}));
 
 app.use('/user', userRoutes); 
 app.use('/hall', hallRoutes); 
